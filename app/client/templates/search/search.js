@@ -146,7 +146,7 @@ Template.Search.onRendered(function () {
         range: true,
         min: 10,
         max: 50000,
-        step: 1,
+        step: 100,
         values: [200, 20000],
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
