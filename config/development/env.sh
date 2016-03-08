@@ -7,3 +7,5 @@
 # export ROOT_URL="http://localhost:3000"
 
 export SAMPLE_VARIABLE="somevalue"
+export ROOT_URL="http://cowscastle.com:3000"
+export PORT=3000

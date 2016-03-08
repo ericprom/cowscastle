@@ -53,21 +53,34 @@
                         </div>
                     </div> -->
                     <div class="row" style="margin-top:10px;">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <h5>ประเภท:</h5>
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <h5>พื้นที่:</h5>
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                {{#each typeList}}
+                                {{#each spaceList}}
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-default btn-lg">{{name}}</button>
+                                    <button type="button" class="btn btn-default btn-lg space-type" id="{{id}}">{{name}}</button>
                                 </div>
                                 {{/each}}
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="row" style="margin-top:10px;">
-                        <div class="col-xs-12">
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+                            <h5>ราคา:</h5>
+                        </div>
+                        <div class="col-md-10 col-sm-10 col-xs-12">
                             <div id="time-range">
-                                <h5>ราคา:</h5>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <span class="from-price">10</span>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <span class="to-price pull-right">50,000</span>
+                                    </div>
+                                </div>
                                 <div class="sliders_step1">
                                     <div id="price-range"></div>
                                 </div>
@@ -75,22 +88,98 @@
                         </div>
                     </div>
                     {{#if isAdvance}}
+                        <hr>
                         <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <h5>ประเภท:</h5>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-xs-12">
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    {{#each typeList}}
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default btn-lg">{{name}}</button>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <h5>จังหวัด:</h5>
+                            </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                <select class="form-control input-lg"  name="search-province">
+                                    {{#each provinceList}}
+                                    <option>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <h5>ออฟชั่น:</h5>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
                                 <div class="checkbox">
                                     <label><input type="checkbox" value="true">Instant Booking</label>
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <h5>สถานที่ใกล้เคียง:</h5>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="true">ใกล้ BTS</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="true">ใกล้ MTR</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                <h5>สิ่งอำนวยความสะดวก:</h5>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="true">WiFi</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="true">เครื่องปริ้น</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="true">ล็อกเกอร์</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="pull-right">
                                 <button type="button" class="btn btn-default btn-lg cancel-advance-search">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary btn-lg apply-advance-search">ค้นหา</button>
+                                </div>
                             </div>
                         </div>
                     {{else}}
+                        <hr>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="pull-right">
                                 <button type="button" class="btn btn-default btn-lg advance-search">ค้นหาแบบละเอียด</button>
+                                </div>
                             </div>
                         </div>
                     {{/if}}

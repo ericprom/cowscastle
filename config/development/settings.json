@@ -1,6 +1,10 @@
 {
-  "public": {
-  },
+    "public": {
+    },
 
-  "sample": "value"
+    "app_name": "Cows Castle Search",
+    "elasticsearch": {
+        "host": "localhost:9200",
+        "meteorLogger": true
+    }
 }
