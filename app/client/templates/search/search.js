@@ -144,7 +144,7 @@ Template.Search.onRendered(function () {
 
      $("#price-range").slider({
         range: true,
-        min: 10,
+        min: 100,
         max: 50000,
         step: 100,
         values: [200, 20000],
