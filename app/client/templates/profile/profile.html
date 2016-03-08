@@ -1,0 +1,74 @@
+<template name="Profile">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        {{> avatar user=currentUser size="large" shape=circle}}
+                        <div class="info">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <label>ชื่อ:</label>
+                                            <input class="form-control input-lg" name="user-name" value="{{User.name}}">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                    </div>
+                                    <div class="strike" >
+                                       <span>About</span>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <label>จังหวัด:</label>
+                                            <input class="form-control input-lg" name="user-location" value="{{User.location}}">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <label>ตำแหน่ง:</label>
+                                            <input class="form-control input-lg" name="user-position" value="{{User.position}}">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <label>บริษัท:</label>
+                                            <input class="form-control input-lg" name="user-company" value="{{User.company}}">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                    </div>
+                                    <div class="strike">
+                                       <span>Bio</span>
+                                    </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+                                            <label>ประวัติส่วนตัว:</label>
+                                            <textarea class="form-control input-lg" name="user-bio" rows="5">{{User.bio}}</textarea>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-12"></div>
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                            <button class="btn btn-primary update-profile-btn">Update profile</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            </div>
+        </div>
+    </div>
+</template>

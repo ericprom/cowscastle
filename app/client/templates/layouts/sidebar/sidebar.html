@@ -1,0 +1,34 @@
+<template name="Sidebar">
+    <div class="row">
+        <div class="col-xs-7 col-sm-3 col-md-2 sidebar sidebar-left sidebar-animate sidebar-show-xs visible-xs">
+            {{>SideList}}
+        </div>
+        <div class="col-xs-7 col-sm-3 col-md-2 sidebar sidebar-right sidebar-animate sidebar-show-lg hidden-xs">
+           {{>SideList}}
+        </div>
+    </div>
+</template>
+<template name="SideList">
+    <ul class="nav navbar-stacked" style="width:100%;">
+        {{#if currentUser}}
+        <li>
+          <a href="{{pathFor 'profile'}}" class="sidebar-profile">
+            <span class="profile-image">{{> avatar user=currentUser shape='circle' size='small'}}</span>
+            {{> cows_account_name }}
+          </a>
+        </li>
+        <li>
+          <hr>
+        </li>
+        <li><a href="/dashboard" class="text-sidebar"> <i class="fa fa-tachometer"></i> แดชบอร์ด</a></li>
+        <li><a href="/castle" class="text-sidebar"> <i class="fa fa-plus"></i> เพิ่มสถานที่</a></li>
+        {{/if}}
+        <li><a href="/search" class="text-sidebar"> <i class="fa fa-search"></i> ค้นหา</a></li>
+        <li><a href="#" class="text-sidebar"> <i class="fa fa-question-circle"></i> ช่วยเหลือ</a></li>
+        {{#if currentUser}}
+        <li><a href="/logout" class="text-sidebar"> <i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
+        {{else}}
+        <li><a href="/login" class="text-sidebar"> <i class="fa fa-sign-in"></i> ล็อกอิน</a></li>
+        {{/if}}
+    </ul>
+</template>

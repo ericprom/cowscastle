@@ -1,0 +1,102 @@
+<template name="Venue">
+    <div class="venue">
+         <div id="spaceCarousel" class="carousel carousel-venue slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active"  style="background-image:url('{{getCover}}')">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>{{Venue.name}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-xs-12">
+                                <h5 class="sub-title">About {{Venue.name}}</h5>
+                                <span class="">
+                                    {{Venue.detail.description}}
+                                </span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                ที่อยู่
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <!--  {{> venueMap session=mapSession center=Venue.location.latlng}} -->
+                                <span class="">
+                                    <i class="fa fa-map-marker"></i> {{theAddress(Venue.location)}}
+                                </span>
+                                <br>
+                                <span class="">
+                                    <i class="fa fa-clock-o"></i> {{isOpen}}
+                                </span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                พื้นที่
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <span class="">
+                                    {{hasFloor(Venue.detail.floors)}}<br>
+                                    {{hasArea(Venue.detail.areas)}}<br>
+                                    {{hasRoom(Venue.detail.rooms)}}<br>
+                                    {{hasDesk(Venue.detail.desks)}}<br>
+                                </span>
+                            </div>
+                        </div>
+                        <hr>
+                        {{#if hasFacility}}
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                สิ่งอำนวยความสะดวก
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="row">
+                                {{#each facilityList}}
+                                    <div class="col-xs-6 facility-style">
+                                        <i class="fa {{this.icon}}"></i>
+                                        {{this.name}}
+                                    </div>
+                                {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="row" style="margin-top:10px;">
+                            {{#each SpaceLists}}
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-spacing">
+                                <div class="space-list" space-id="{{this._id}}">
+                                    <div class="space-cover" style="background-image:url({{getPoster}})">
+                                    </div>
+                                    <div class="space-title">
+                                        <span class="space-type">{{this.type}}</span>
+                                        <span class="space-host">@ {{theVenue.name}}</span>
+                                        <span class="pull-right">
+                                            <button class="btn {{BookingButton.state}} space-booking-btn" space-id="{{this._id}}">
+                                                <i class="fa {{BookingButton.icon}}"></i> {{BookingButton.text}}
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

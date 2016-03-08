@@ -1,0 +1,92 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
+
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+
+#app setting
+#twbs:bootstrap
+#ian:accounts-ui-bootstrap-3
+#peppelg:bootstrap-3-modal
+
+##### Useraccount #####
+accounts-facebook
+accounts-github
+# accounts-ui-unstyled
+ian:accounts-ui-bootstrap-3
+accounts-password
+useraccounts:bootstrap
+useraccounts:iron-routing
+splendido:accounts-meld
+
+##### Enhancement #####
+http
+underscore
+check
+reactive-var
+manuel:reactivearray
+service-configuration
+
+##### Vendor Plugin #####
+dburles:google-maps
+mizzao:jquery-ui
+utilities:avatar
+
+##### Style & Theme #####
+fortawesome:fontawesome
+dispatch:phoneformat.js
+
+##### Route Option #####
+iron:router
+okgrow:router-autoscroll
+
+##### Pub/Sub Manager #####
+meteorhacks:subs-manager
+
+##### Build & Automation & Debug #####
+less
+msavin:mongol
+msavin:jetsetter
+
+##### Testing Tools #####
+sanjo:jasmine
+velocity:html-reporter
+chrismbeckett:toastr
+
+#### Time picker ###
+momentjs:moment
+aldeed:autoform-bs-datetimepicker
+tsega:bootstrap3-datetimepicker@=3.1.3_3
+
+##### file upload #####
+cfs:gridfs
+cfs:filesystem
+cfs:standard-packages
+cfs:ui
+email
+meteorhacks:ssr
+
+##### Collection #####
+aldeed:collection2
+reywood:publish-composite
+matb33:collection-hooks
+
+##### Payment #####
+mrgalaxy:stripe
+random
+mrt:paypal
+
+##### Search #####
+brishin:meteor-elasticsearch

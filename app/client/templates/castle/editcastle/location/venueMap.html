@@ -1,0 +1,14 @@
+<template name="venueMap">
+    <div class="row">
+        <div class="col-xs-12" style="height: 300px;">
+            <button id="use-current-location" class="btn btn-primary venue-current {{locatingClass}} {{isShowButton}}">
+                {{#if locating}}
+                    <i class="fa fa-spinner fa-spin"></i> กำลังหาตำแหน่ง
+                {{else}}
+                    <i class="fa fa-location-arrow"></i> ใช้ตำแหน่งปัจจุบัน
+                {{/if}}
+            </button>
+            {{> googleMap name=mapName options=mapOptions}}
+        </div>
+    </div>
+</template>

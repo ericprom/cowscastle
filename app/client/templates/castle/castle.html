@@ -1,0 +1,76 @@
+<template name="Castle">
+  <div class="content-box">
+        <div class="container">
+            {{#if isNewCastle}}
+                <div class="row">
+                    <div class="col-xs-12">
+                      <h1 class="head-title">ตั้งชื่อสถานที่</h1>
+                      <h5 class="sub-title">เริ่มต้นให้บริการ Co-working space ของคุณ</h5>
+                    </div>
+                </div>
+                <div class="strike">
+                   <span>สถานที่</span>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label for="venue-name">ชื่อสถานที่:</label>
+                        <input type="text" name="venue-name" class="form-control input-lg" placeholder="Cows Castle">
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label for="venue-province">เขตพื้นที่:</label>
+                        <select class="form-control input-lg" name="venue-province">
+                            <option value="bangkok">กรุงเทพ</option>
+                            <option value="chiangmai">เชียงใหม่</option>
+                            <option value="phuket">ภูเก็ต</option>
+                            <option value="pattaya">พัทยา</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    </div>
+                </div>
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-primary btn-lg " id="saveAndContinueButton">
+                        <i class="fa fa-check"></i>  เริ่มให้บริการ
+                        </button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button type="button" class="btn btn-danger btn-lg pull-right" id="cancelButton">
+                        <i class="fa fa-times"></i> ยกเลิก
+                        </button>
+                    </div>
+                </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-xs-12">
+                      <h1 class="profile-title">เพิ่มสถานที่ใหม่</h1>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                        <div class="add-castle-btn">
+                            <div class="center-caption">
+                              <button class="btn" id="createCastleButton"><i class="fa fa-plus"></i> เพิ่มใหม่</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{#each castleList}}
+                    <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                        <div class="castle-list" venue-id="{{this._id}}">
+                            <div class="center-caption">
+                              <span class="text-grey">{{this.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

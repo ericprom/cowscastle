@@ -1,0 +1,37 @@
+<template name="Creditcard">
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label> ชื่อบนบัตร</label>
+            <input type="text" data-stripe="cardHolder" class="form-control card-holder input-lg" placeholder="Cows Castle" maxlength="80">
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">
+            <label class="text-success"><i class="fa fa-lock"></i> หมายเลขบัตร 16 หลัก</label>
+            <input type="text" data-stripe="cardNumber" class="form-control card-number input-lg" placeholder="0000000000000000" maxlength="16">
+          </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <label>เดือนที่หมดอายุ</label>
+          <input type="text" data-stripe="expMo" class="form-control exp-month input-lg" placeholder="12" maxlength="2">
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <label>ปีที่หมดอายุ</label>
+          <input type="text" data-stripe="expYr" class="form-control exp-year input-lg" placeholder="2020" maxlength="4">
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12">
+          <label>CVC</label>
+          <input type="text" data-stripe="cvc" class="form-control cvc input-lg" placeholder="CVC" maxlength="3">
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <button class="btn btn-primary btn-lg book-now-btn" {{process.status}}>
+                <i class="fa {{process.icon}}"></i> ชำระเงิน
+            </button>
+        </div>
+    </div>
+</template>

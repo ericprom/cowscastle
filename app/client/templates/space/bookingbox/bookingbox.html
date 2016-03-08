@@ -1,0 +1,53 @@
+<template name="Bookingbox">
+    <div class="booking-box">
+        <div class="price-box">
+         {{CostBox.price}} <span class="pull-right">{{CostBox.unit}}</span>
+        </div>
+        <div class="request-box">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label>วันที่?</label>
+                    <div class="input-group datetimepicker">
+                        <input class="form-control input-lg" type="text" name="booking-box-date" id="booking-box-date" />
+                        <span class="input-group-addon input-lg">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>จำนวนวัน?</label>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-lg subtract-booking-duration" type="button">-</button>
+                      </span>
+                      <input type="text" class="form-control input-lg text-center" name="booking-box-duration" id="booking-box-duration" value="{{Booking.duration}}">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-lg add-booking-duration" type="button">+</button>
+                      </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <label>จำนวนคน?</label>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-lg subtract-booking-amount" type="button">-</button>
+                      </span>
+                      <input type="text" class="form-control input-lg text-center" placeholder="1" name="booking-box-amount" id="booking-box-amount" value="{{Booking.amount}}">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-lg add-booking-amount" type="button">+</button>
+                      </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:15px;">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn btn-primary btn-lg" style="width:100%;" id="bookingButton">
+                        จองเลย
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

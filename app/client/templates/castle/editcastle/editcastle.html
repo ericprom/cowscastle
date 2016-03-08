@@ -1,0 +1,540 @@
+<template name="Editcastle">
+  <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12" id="myWizard">
+                    <h1 class="head-title preview" style="cursor: pointer;">{{Venue.name}}</h1>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
+                                  Step 1 of 6
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <ul class="nav nav-pills nav-stacked venue-step hidden-xs">
+                                <li class="active" venue-tab="location">
+                                    <a href="#step1" data-toggle="tab" data-step="1">
+                                        ตำแหน่งที่ตั้ง
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                                <li venue-tab="detail">
+                                    <a href="#step2" data-toggle="tab" data-step="2">
+                                        รายละเอียด
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                                <li venue-tab="space">
+                                    <a href="#step3" data-toggle="tab" data-step="3">
+                                        พื้นที่ให้บริการ & ราคา
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                                <li venue-tab="staff">
+                                    <a href="#step4" data-toggle="tab" data-step="4">
+                                        ผู้ดูแล
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                                <li venue-tab="facility">
+                                    <a href="#step5" data-toggle="tab" data-step="5">
+                                        สิ่งอำนวยความสะดวก
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                                <li venue-tab="payment">
+                                    <a href="#step6" data-toggle="tab" data-step="6">
+                                       การจ่ายเงิน
+                                        <i class="fa fa-plus pull-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <button class="btn btn-danger btn-lg hidden-xs" id="deleteCastleButton" style="width:100%;margin-top:20px;">
+                                <i class="fa fa-trash"></i> ลบ
+                            </button>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="step1">
+                                    <div class="well">
+                                        <div class="strike" style="margin-top:0">
+                                           <span>แผนที่</span>
+                                        </div>
+                                        {{> venueMap session=mapSession center=Venue.location.latlng}}
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <label>ที่อยุ่:</label>
+                                                <input class="form-control input-lg" name="venue-address" value="{{Venue.location.address}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>ตำบล/แขวง:</label>
+                                                <input class="form-control input-lg" name="venue-district" value="{{Venue.location.district}}">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>อำเภอ/เขต:</label>
+                                                <input class="form-control input-lg" name="venue-city" value="{{Venue.location.city}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>จังหวัด:</label>
+                                                <input class="form-control input-lg" name="venue-province" value="{{Venue.location.province}}">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>รหัสไปรษณีย์:</label>
+                                                <input class="form-control input-lg" name="venue-zipcode" value="{{Venue.location.zipcode}}">
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>ข้อมูลการติดต่อ</span>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>เบอร์โทร:</label>
+                                                <input class="form-control input-lg" name="venue-phone" value="{{Phoneformat(Venue.location.phone)}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>อีเมล์:</label>
+                                                <input class="form-control input-lg" name="venue-email" value="{{Venue.location.email}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <label>เว็บไซท์:</label>
+                                                <input class="form-control input-lg"  name="venue-website" value="{{Venue.location.website}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-primary btn-lg save-location" href="#">
+                                        <i class="fa fa-floppy-o"></i> เซฟและไปต่อ
+                                    </a>
+                                </div>
+                                <div class="tab-pane fade" id="step2">
+                                    <div class="well">
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <label>ชื่อสถานที่:</label>
+                                                        <input class="form-control input-lg" name="venue-name" value="{{Venue.name}}">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <label>สโลแกน:</label>
+                                                        <input class="form-control input-lg" name="venue-slogan" value="{{Venue.detail.slogan}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <label>&nbsp;</label>
+                                                <center>
+                                                {{#if getLogo}}
+                                                    <img src="/cfs/files/Logos/{{getLogo._id}}" class="image-circle">
+                                                {{else}}
+                                                    <img src="http://placehold.it/100x100?text={{C2Abbr(Venue.name)}}" class="image-circle" height="100px" width="100px">
+                                                {{/if}}
+                                                <a class="btn add-venue-logo">
+                                                    <i class="fa fa-camera"></i>
+                                                    {{#if getLogo}}Update Logo{{else}}Add Logo{{/if}}
+                                                </a>
+                                                </center>
+                                                <input type="file" class="hidden venue-logo-upload" name="venue-logo-upload" accept="image/*">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <label>คำอธิบาย:</label>
+                                                <textarea class="form-control" rows="5" name="venue-description">{{Venue.detail.description}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>รูปภาพสถานที่</span>
+                                        </div>
+                                        <div class="row" style="margin-top:20px;">
+                                            {{#each GalleryList}}
+                                            <div class="col-md-3 col-sm-6 col-xs-12 col-spacing">
+                                                <img src="/cfs/files/Galleries/{{this._id}}?chk={{@index}}" class="image-gallery">
+                                            </div>
+                                            {{/each}}
+                                            <div class="col-md-3 col-sm-6 col-xs-12 col-spacing">
+                                                <div class="add-photo-btn">
+                                                    <div class="center-caption">
+                                                        <button class="btn add-venue-photo" style="margin-top:15px;">
+                                                            <i class="fa fa-camera"></i>
+                                                            Add photos
+                                                        </button>
+
+                                                        <input type="file" class="hidden venue-photo-upload" name="venue-photo-upload" accept="image/*">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>ข้อมูลพื้นที่</span>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <label>จำนวนชั้น:</label>
+                                                <input class="form-control input-lg" name="number-of-floors" value="{{Venue.detail.floors}}">
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <label>ขนาดพื้นที่:</label>
+                                                <input class="form-control input-lg" name="floor-areas" value="{{Venue.detail.areas}}">
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <label>จำนวนห้อง:</label>
+                                                <input class="form-control input-lg" name="number-of-rooms" value="{{Venue.detail.rooms}}">
+                                            </div>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <label>จำนวนโต๊ะ:</label>
+                                                <input class="form-control input-lg" name="number-of-desks" value="{{Venue.detail.desks}}">
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>วันและเวลาทำการ</span>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-xs-12">
+                                                <div id="time-range">
+                                                    <p>Monday: <span class="opening-time">10:00 AM</span> - <span class="closing-time">20:00 PM</span></p>
+                                                    <div class="sliders_step1">
+                                                        <div id="slider-range"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-primary btn-lg save-detail" href="#">
+                                        <i class="fa fa-floppy-o"></i> เซฟและไปต่อ
+                                    </a>
+                                </div>
+                                <div class="tab-pane fade" id="step3">
+                                    <div class="well">
+                                    {{#if isUpdateSpace}}
+                                        <h1 class="head-title">พื้นที่ให้บริการ</h1>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label for="venue-province">รูปแบบพื้นที่:
+                                                <input type="checkbox" name="update-instant-booking" {{isInstant(getSpace.instant)}}>
+                                                <label for="update-instant-booking">instant booking?</label>
+                                                </label>
+                                                 <select class="form-control input-lg"  name="update-space-type">
+                                                    {{#each spaceList}}
+                                                    <option {{spaceAttributes}}>{{type}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ตั้งชื่อพื้นที่ <span class="text-danger">*</span>:</label>
+                                                <input class="form-control input-lg" name="update-space-name" value="{{getSpace.name}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>จำนวน:</label>
+                                                <input class="form-control input-lg" name="update-space-quantity" value="{{getSpace.quantity}}">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>รายละเอียด <span class="text-danger">*</span>:</label>
+                                                <textarea class="form-control" rows="5" name="update-space-detail">{{getSpace.detail}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>ภาพประกอบ</span>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                                            {{#if getPoster}}
+                                                <div class="add-poster-btn">
+                                                    <img src="/cfs/files/Posters/{{getPoster._id}}" class="poster-image">
+                                                    <div class="poster-caption">
+                                                      <button class="btn update-space-poster"><i class="fa fa-camera"></i> แก้ไข</button>
+                                                      <input type="file" class="hidden space-poster-update" name="space-poster-update" accept="image/*">
+                                                    </div>
+                                                </div>
+                                            {{else}}
+                                                <div class="add-castle-btn">
+                                                    <div class="center-caption">
+                                                      <button class="btn upload-space-poster"><i class="fa fa-camera"></i> เพิ่มรูป</button>
+                                                  <input type="file" class="hidden space-poster-upload" name="space-poster-upload" accept="image/*">
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                            </div>
+                                        </div>
+                                        <div class="strike">
+                                           <span>ราคา</span>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ต่อชั่วโมง:</label>
+                                                <div class="input-group">
+                                                 <input class="form-control input-lg" name="update-cost-per-hour" value="{{getSpace.per_hour}}">
+                                                  <span class="input-group-addon">‎ ฿ </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ต่อวัน:</label>
+                                                <div class="input-group">
+                                                 <input class="form-control input-lg" name="update-cost-per-day" value="{{getSpace.per_day}}">
+                                                  <span class="input-group-addon">‎ ฿ </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ต่อเดือน:</label>
+                                                <div class="input-group">
+                                                 <input class="form-control input-lg" name="update-cost-per-month" value="{{getSpace.per_month}}">
+                                                  <span class="input-group-addon">‎ ฿ </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{else}}
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                                                <div class="add-castle-btn">
+                                                    <div class="center-caption">
+                                                      <button class="btn" id="createSpaceButton"><i class="fa fa-plus"></i> เพิ่ม</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{#each Spaces}}
+                                            <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                                                <div class="castle-list" space-id="{{this._id}}">
+                                                    <div class="center-caption">
+                                                    {{#if this.type}}
+                                                        {{this.type}}
+                                                    {{else}}
+                                                        {{this.name}}
+                                                    {{/if}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                    {{/if}}
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-xs-6">
+                                            {{#if isUpdateSpace}}
+                                                <a class="btn btn-primary btn-lg update-space-price" href="#">
+                                                    <i class="fa fa-floppy-o"></i> บันทึก
+                                                </a>
+                                            {{else}}
+
+                                                <a class="btn btn-primary btn-lg next" href="#">
+                                                    <i class="fa fa-angle-right"></i> ไปต่อ
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                        <div class="col-xs-6">
+                                            {{#if spaceTabClick}}
+                                            <a type="button" class="btn btn-danger btn-lg pull-right" id="deleteSpaceButton">
+                                                <i class="fa fa-trash"></i> ลบ
+                                            </a>
+
+                                            <a type="button" class="btn btn-danger btn-lg pull-right" id="cancelSpaceButton">
+                                                <i class="fa fa-times"></i> ยกเลิก
+                                            </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="step4">
+                                    <div class="well">
+                                    {{#if isNewAdmin}}
+                                        <h1 class="head-title">Add a new admin</h1>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>Email:</label>
+                                                <input class="form-control input-lg staff-search" name="staff-email">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label for="venue-province">Admin role:</label>
+                                                 <select class="form-control input-lg" name="staff-role">
+                                                    {{#each roleList}}
+                                                    <option {{roleAttributes}}>{{name}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {{else}}
+                                        <div class="row" style="margin-top:10px;">
+                                            {{#each Staffs}}
+                                            <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                                                <div class="castle-list">
+                                                    <div class="center-caption">
+                                                      {{this.profile.name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                            <!-- <div class="col-md-4 col-sm-4 col-xs-12 col-spacing">
+                                                <div class="add-castle-btn">
+                                                    <div class="center-caption">
+                                                      <button class="btn" id="createAdminButton"><i class="fa fa-user"></i> Add admin</button>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-xs-6">
+                                            {{#if isNewAdmin}}
+                                                <a class="btn btn-primary btn-lg invite-venue-staff" href="#">
+                                                    <i class="fa fa-send"></i> ส่งคำเชิญ
+                                                </a>
+                                            {{else}}
+                                                <a class="btn btn-primary btn-lg next" href="#">
+                                                    <i class="fa fa-angle-right"></i> ไปต่อ
+                                                </a>
+                                            {{/if}}
+                                        </div>
+                                        <div class="col-xs-6">
+                                            {{#if staffTabClick}}
+                                            <a type="button" class="btn btn-danger btn-lg pull-right" id="cancelStaffButton">
+                                                <i class="fa fa-times"></i> ยกเลิก
+                                            </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="step5">
+                                  <div class="well">
+                                        {{#each facilityList}}
+                                            <div class="checkbox-group">
+                                                <input type="checkbox" id="{{this.id}}" name="facility" {{isCheck}}> <label for="{{this.id}}">{{name}}</label>
+                                            </div>
+                                        {{/each}}
+                                  </div>
+                                   <a class="btn btn-primary btn-lg add-venue-facility" href="#">เซฟและไปต่อ</a>
+                                </div>
+                                <div class="tab-pane fade" id="step6">
+                                    <div class="well">
+                                        {{#if isNewPayment}}
+                                        <h1 class="head-title">บัญชีที่ต้องการให้โอนเงินเข้า</h1>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ธนาคาร :</label>
+                                                <input class="form-control input-lg" name="bank-name">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>ชื่อบัญชี :</label>
+                                                <input class="form-control input-lg" name="account-name">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:10px;">
+                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <label>เลขที่บัญชี :</label>
+                                                <input class="form-control input-lg" name="account-number">
+                                            </div>
+                                        </div>
+                                        {{else}}
+                                            {{#if isUpdatePayment}}
+                                            <h1 class="head-title">บัญชีที่ต้องการให้โอนเงินเข้า</h1>
+                                            <div class="row" style="margin-top:10px;">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <label>ธนาคาร :</label>
+                                                    <input class="form-control input-lg" name="update-bank-name" value="{{getPayment.bank_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:10px;">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <label>ชื่อบัญชี :</label>
+                                                    <input class="form-control input-lg" name="update-account-name" value="{{getPayment.account_name}}">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:10px;">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <label>เลขที่บัญชี :</label>
+                                                    <input class="form-control input-lg" name="update-account-number"  value="{{getPayment.account_number}}">
+                                                </div>
+                                            </div>
+                                            {{else}}
+                                                {{#each Payments}}
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-10 col-sm-10 col-xs-12">
+                                                        <i class="fa fa-money"></i>
+                                                        <b>ธนาคาร {{this.bank_name}}</b>
+                                                        ชื่อบัญชี: <b>{{this.account_name}}</b>
+                                                        เลขที่บัญชี:<b>{{this.account_number}}</b>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                                        <button class="btn pull-right payment-method-edit">
+                                                            <i class="fa fa-edit"></i> Edit
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                {{/each}}
+                                                <div class="row" style="margin-top:10px;">
+                                                    <div class="col-md-10 col-sm-10 col-xs-12">
+                                                        <!-- <i class="fa fa-money"></i> Add payment method -->
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-xs-12">
+                                                        <button class="btn pull-right" id="addPaymentButton">
+                                                            <i class="fa fa-plus"></i> Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                        {{/if}}
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-xs-6">
+                                            {{#if isNewPayment}}
+                                                <a class="btn btn-primary btn-lg add-payment-method" href="#">
+                                                    <i class="fa fa-floppy-o"></i> บันทึก
+                                                </a>
+                                            {{else}}
+                                                {{#if isUpdatePayment}}
+                                                <a class="btn btn-primary btn-lg update-payment-method" href="#">
+                                                    <i class="fa fa-floppy-o"></i> บันทึก
+                                                </a>
+                                                {{else}}
+                                                <a class="btn btn-success btn-lg preview" href="#">
+                                                    Preview
+                                                </a>
+                                                {{/if}}
+                                            {{/if}}
+                                        </div>
+                                        <div class="col-xs-6">
+                                            {{#if paymentTabClick}}
+                                            <a type="button" class="btn btn-danger btn-lg pull-right" id="deletePaymentButton">
+                                                <i class="fa fa-trash"></i> ลบ
+                                            </a>
+                                            <a type="button" class="btn btn-danger btn-lg pull-right" id="cancelPaymentButton">
+                                                <i class="fa fa-times"></i> ยกเลิก
+                                            </a>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

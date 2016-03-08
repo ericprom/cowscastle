@@ -1,0 +1,57 @@
+<template name="Dashboard">
+    <div class="content-box" style="padding:10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+                        </div>
+                        {{> avatar user=currentUser size="large" shape=circle}}
+                        <div class="info">
+                            <div class="title">
+                                {{> cows_account_name }}
+                            </div>
+                           <h5>Verified by:
+                           {{#if Verified.email}}<i class="fa fa-envelope-o"></i>{{/if}}
+                           {{#if Verified.phone}}<i class="fa fa-phone"></i>{{/if}}
+                           </h5>
+                           <div class="desc">Hosted: {{Hosted}} </div>
+                        </div>
+                        <div class="bottom">
+                           <!--  <a class="btn facebook btn-sm" rel="publisher"
+                               href="">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a class="btn twitter btn-sm" href="">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a class="btn instagram btn-sm" rel="publisher"
+                               href="">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a class="btn youtube btn-sm" rel="publisher"
+                               href="">
+                                <i class="fa fa-youtube-play"></i>
+                            </a>
+                            <a class="btn linkedin btn-sm" rel="publisher"
+                               href="">
+                                <i class="fa fa-linkedin"></i>
+                            </a> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="strike">
+                       <span>Booking Activity</span>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        No Booking at this time.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

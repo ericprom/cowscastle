@@ -1,0 +1,93 @@
+<template name="Booking">
+    <div class="content-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12" style="margin-bottom:30px;">
+                    {{#if InstantBooking}}
+                        <h1 class="head-title">Payment</h1>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label for="payment-type">รูปแบบการจ่ายเงิน</label>
+                                <select class="form-control input-lg" name="payment-type" id="paymentType">
+                                    <option value="creditcard">บัตรเครดิต</option>
+                                    <!-- <option value="paypal">paypal</option> -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{#if isPayByCredit}}
+                                    <img src="https://www.paypalobjects.com/webstatic/mktg/logo/PP_AcceptanceMarkTray-NoDiscover_243x40.png" class="accept-payment-type" />
+                                {{else}}
+                                    {{>Paypal}}
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{#if isPayByCredit}}
+                            <form id="booking-payment" class="booking">
+                            {{>Creditcard process=isProcressing}}
+                            </form>
+                        {{/if}}
+                    {{else}}
+
+                    <h1 class="head-title">สอบถามการจอง {{theVenue(Space.venue_id)}}</h1>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <textarea class="form-control" rows="5" name="request-message"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:30px;">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button class="btn btn-info btn-lg">
+                                <i class="fa fa-send-o"></i> ส่งคำขอ
+                            </button>
+                        </div>
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="well well-payment payment-box">
+                        <div class="space-cover" style="background-image:url('{{getPoster}}')"></div>
+                        <div class="payment-space-detail">
+                            {{Space.name}}
+                            <h3>{{Space.type}}</h3>
+                            <h5><i class="fa fa-map-marker"></i> {{theVenue(Space.venue_id)}}</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-spacing">
+                                    วันที่จอง
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 col-spacing">
+                                     {{unixToDate(Booking.date)}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-spacing">
+                                    จำนวน
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 col-spacing">
+                                     {{Booking.duration}} วัน
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-spacing">
+                                    จองพื้นที่สำหรับ
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 col-spacing">
+                                    {{Booking.amount}} คน
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8 col-spacing">
+                                    รวม
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 col-spacing">
+                                    {{BillAmount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

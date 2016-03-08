@@ -1,0 +1,52 @@
+<template name="Space">
+    <div class="space">
+         <div id="spaceCarousel" class="carousel carousel-space slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active" style="background-image:url('{{getPoster}}')">
+                </div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h1 class="head-title">{{Space.type}}</h1>
+                                <h5 class="sub-title">
+                                    <i class="fa fa-map-marker"></i> {{theVenue(Space)}}
+                                </h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <!-- {{> venueMap session=mapSession center=Venue.location.latlng}} -->
+                                <!-- <span class="">
+                                    <i class="fa fa-map-marker"></i> {{theAddress(Space)}}
+                                </span>
+                                <br>
+                                <span class="">
+                                    <i class="fa fa-clock-o"></i> {{isOpen}}
+                                </span> -->
+                            </div>
+                        </div>
+                        <div class="row visible-sm" style="margin-top:10px;">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                {{>Bookingbox _space=Space}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12 visible-md visible-lg">
+                        {{>Bookingbox _space=Space}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-booking-box visible-xs">
+            <button class="btn btn-primary btn-lg" style="width:100%;" id="bookDateButton">
+                จอง
+            </button>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,34 @@
+<template name="Paypal">
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-10 col-sm-10 col-xs-12">
+            <!-- <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top" style="opacity: 1; margin-top: 15px;">
+                <div class="hide" id="errorBox"></div>
+                <input type="hidden" name="button" value="buynow">
+                <input type="hidden" name="business" value="CowsCastle.com">
+                <input type="hidden" name="item_name" value="Cows Castle Booking">
+                <input type="hidden" name="amount" value="1.00">
+                <input type="hidden" name="currency_code" value="THB">
+                <input type="hidden" name="notify_url" value="http://cowscastle.com:3000/paypalCallback">
+                <input type="hidden" name="env" value="www.sandbox">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="bn" value="JavaScriptButton_buynow">
+                <button type="submit" class="btn btn-primary btn-lg paypal-button">
+                    <i class="fa fa-paypal"></i> Pay Now
+                </button>
+            </form> -->
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="opacity: 1; margin-top: 15px;">
+                <input type="hidden" name="hosted_button_id" value="6DQM9F2FQ5R32">
+                <input type="hidden" name="item_name" value="Cows Castle Booking">
+                <input type="hidden" name="amount" value="1.00">
+                <input type="hidden" name="currency_code" value="THB">
+                <input type="hidden" name="notify_url" value="http://cowscastle.com:3000/paypalCallback">
+                <input type="hidden" name="env" value="www.sandbox">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <!-- <input type="image" src="https://www.paypalobjects.com/webstatic/en_AU/i/buttons/btn_paywith_primary_l.png" border="0" name="submit" alt="PayPal คือ วิธีชำระเงินออนไลน์ที่ปลอดภัยและง่ายยิ่งขึ้น!"> -->
+                <button type="submit" name="submit" class="btn btn-primary btn-lg paypal-button">
+                    <i class="fa fa-paypal"></i> จ่ายด้วย PayPal
+                </button>
+            </form>
+        </div>
+    </div>
+</template>

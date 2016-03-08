@@ -1,0 +1,20 @@
+<template name="deleteCastleModal">
+    <div class="modal fade in" id="deleteCastleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"> <i class="fa fa-trash"></i> Remove Castle</h4>
+                </div>
+                <div class="modal-body">
+                        <input type="hidden" name="castle_id" placeholder="id" value="{{this._id}}">
+                        Do you really want to remove <b>{{this.name}}</b>?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="removeCastleButton"> Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

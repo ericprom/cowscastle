@@ -1,0 +1,51 @@
+<template name="Nav">
+    <div class="navbar navbar-default navbar-fixed-top {{#unless atHome}}opaque{{/unless}}">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle white-navbar-toggle toggle-left visible-xs" data-toggle="sidebar" data-target=".sidebar">
+                    <span class="icon-bar white-icon-bar"></span>
+                    <span class="icon-bar white-icon-bar"></span>
+                    <span class="icon-bar white-icon-bar"></span>
+                </button>
+                <a class="navbar-brand {{#unless atHome}}hidden-xs{{/unless}}" href="{{pathFor 'home'}}">
+                    <i class="icon icon-cowscastle logo-white"></i>
+                    <span class="cowscastle-title title-white {{#unless atHome}}hidden{{/unless}}">Cows Castle </span>
+                </a>
+                <form class="navbar-form pull-left {{#if atHome}}hidden{{/if}} search-form" role="search">
+                    <div class="from-group">
+                       <input type="text" name="search-nav-text" class="search-box" placeholder="หาที่ทำงานบรรยากาศชิลๆ" value="{{searchFor}}">
+                    </div>
+                </form>
+            </div>
+            {{#if atHome}}
+                {{#if currentUser}}
+                    <button type="button" class="navbar-toggle white-navbar-toggle toggle-right hidden-xs" data-toggle="sidebar" data-target=".sidebar-right">
+                        <span class="icon-bar white-icon-bar"></span>
+                        <span class="icon-bar white-icon-bar"></span>
+                        <span class="icon-bar white-icon-bar"></span>
+                    </button>
+                {{else}}
+                <div class="home-li">
+                    <ul class="hidden-xs pull-right">
+                        <li>
+                            <button type="button" class="btn btn-primary login-btn border-white-text-white" id="callLoginModalButton"> ล็อกอิน
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                {{/if}}
+            {{else}}
+             <div class="profile-li">
+                <ul class="hidden-xs pull-right">
+                    <li class="dropdown">
+                        <a href=""  class="dropdown-toggle" data-toggle="sidebar" data-target=".sidebar-right">
+                        {{> cows_account_name }}
+                        <span class="profile-image">{{> avatar user=currentUser shape='circle' size='small'}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</template>
