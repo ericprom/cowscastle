@@ -5,13 +5,17 @@ advanceSearch = new ReactiveVar(false);
 /* Search: Event Handlers */
 /*****************************************************************************/
 Template.Search.events({
-    'click .cancel-advance-search': function(event, template){
-        event.preventDefault();
-        advanceSearch.set(false);
-    },
     'click .advance-search': function(event, template){
         event.preventDefault();
         advanceSearch.set(true);
+    },
+    'click .apply-advance-search': function(event, template){
+        event.preventDefault();
+        advanceSearch.set(false);
+    },
+    'click .cancel-advance-search': function(event, template){
+        event.preventDefault();
+        advanceSearch.set(false);
     },
     'click .space-type': function(event, template){
         event.preventDefault();
