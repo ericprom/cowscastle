@@ -80,7 +80,7 @@ Template.Bookingbox.helpers({
             return data;
         }
     },
-    Space: function(){
+    Share: function(){
         var spaceID = Router.current().data().id;
         var space = Spaces.findOne(spaceID);
         var status = false;
