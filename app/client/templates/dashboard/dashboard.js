@@ -19,13 +19,11 @@ Template.Dashboard.helpers({
         }
         return status;
     },
-    theSpaceName: function(space){
+    theSpaceData: function(space){
         var space = Spaces.findOne(space);
-        return space.name;
-    },
-    theSpaceType: function(space){
-        var space = Spaces.findOne(space);
-        return space.type;
+        var vanue = Venues.findOne(space.venue_id);
+        return space.type+"@"+vanue.name;
+        
     },
     Verified: function(){
         var user = Meteor.user();
