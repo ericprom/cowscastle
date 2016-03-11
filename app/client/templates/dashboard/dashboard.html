@@ -49,10 +49,12 @@
                         {{#each Booking}}
                         <li class="list-group-item">
                             <span class="badge">{{ConfirmMessage(this.confirm)}}</span>
+                            {{#if this.confirm}}
+                            <i class="fa fa-check-square-o"> </i>
+                            {{else}}
                             <i class="fa fa-edit edit-booking"> </i>
-                            {{unless this.confirm}}
+                            {{/if}}
                             {{theSpaceData(this.space_id)}}
-                            {{/unless}}
                         </li>
                         {{/each}}
                     </ul>
