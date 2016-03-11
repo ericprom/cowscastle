@@ -41,6 +41,10 @@ Template.Booking.events({
     }, 200),
     'click .book-now-btn': function(event, template){
         event.preventDefault();
+        toastr.warning('ระบบระบบได้ทำการจองเรียบ้อยแล้ว', 'Cows Castle');
+    },
+    'click .pay-by-credit-btn': function(event, template){
+        event.preventDefault();
         var name = $('[data-stripe="cardHolder"]').val();
         var number = $('[data-stripe="cardNumber"]').val();
         var type = creditCradType.get();
