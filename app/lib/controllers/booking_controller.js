@@ -11,7 +11,12 @@ BookingController = RouteController.extend({
     this.subscribe('To', {'collection':'Teams'}).wait();
     this.subscribe('To', {'collection':'Venues'}).wait();
     this.subscribe('To', {'collection':'Spaces'}).wait();
-    this.subscribe('To', {'collection':'Bookings'}).wait();
+    this.subscribe('To',{
+        'collection':'Bookings',
+        'query':{
+            createdBy : Meteor.userId()
+        }
+    });
     this.subscribe('To', {'collection':'Payments'}).wait();
     this.subscribe('To', {'collection':'Logos'}).wait();
     this.subscribe('To', {'collection':'Posters'}).wait();
