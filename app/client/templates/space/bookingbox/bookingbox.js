@@ -83,7 +83,14 @@ Template.Bookingbox.helpers({
     Space: function(){
         var spaceID = Router.current().data().id;
         var space = Spaces.findOne(spaceID);
-        return space;
+        var status = false;
+        if(space.type =='Share Desk'){
+            status = true;
+        }
+        else{
+            status = false;
+        }
+        return status;
     },
     Booking : function(){
         return {
