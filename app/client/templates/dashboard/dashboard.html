@@ -48,10 +48,10 @@
                     <div class="row" style="margin-top:10px;">
                         {{#each Booking}}
                             <div class="col-md-10 col-sm-10 col-xs-12">
-                                {{theSpace(this.space_id).name}}
+                                {{theSpaceName(this.space_id)}}
                             </div>
                             <div class="col-md-2 col-sm-2 col-xs-12">
-                                {{Confirm(this.confirm)}}
+                                {{ConfirmMessage(this.confirm)}}
                             </div>
                         {{/each}}
                     </div>

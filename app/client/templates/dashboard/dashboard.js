@@ -12,16 +12,20 @@ Template.Dashboard.helpers({
         var booking = Bookings.find().fetch();
         return booking;
     },
-    Confirm: function(data){
+    ConfirmMessage: function(data){
         var status = 'ไม่ยืนยัน';
         if(data){
             status = 'ยืนยัน';
         }
         return status;
     },
-    theSpace: function(space){
-        var space = Spaces.findOne();
-        return space;
+    theSpaceName: function(space){
+        var space = Spaces.findOne(space);
+        return space.name;
+    },
+    theSpaceType: function(space){
+        var space = Spaces.findOne(space);
+        return space.type;
     },
     Verified: function(){
         var user = Meteor.user();
