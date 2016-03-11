@@ -70,7 +70,9 @@
                                             {{theSpaceData(this.space_id)}}
                                         </td> 
                                         <td>
+                                            {{#unless this.confirm}}
                                             <button class="btn btn-default edit-booking">ยืนยันการจอง</button>
+                                            {{/unless}}
                                         </td> 
                                     </tr> 
                                     {{/each}}
