@@ -12,6 +12,10 @@ Template.Dashboard.helpers({
         var booking = Bookings.find().fetch();
         return booking;
     },
+    theSpace: function(space){
+        var space = Spaces.findOne();
+        return space;
+    },
     Verified: function(){
         var user = Meteor.user();
         var emails = user.emails;
