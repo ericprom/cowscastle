@@ -29,6 +29,11 @@ Template.Dashboard.helpers({
         return space.type+" @ "+venue.name;
         
     },
+    theBookingData:function(){
+        var space = Spaces.findOne(data);
+        var venue = Venues.findOne(space.venue_id);
+        return "Booking "+space.type;
+    },
     Verified: function(){
         var user = Meteor.user();
         var emails = user.emails;

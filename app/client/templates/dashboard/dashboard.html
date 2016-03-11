@@ -51,7 +51,7 @@
                     </ul>
                     <div class="tab-content">
                         <div id="your-booking" class="tab-pane active">
-                            <table class="table table-hover"> 
+                            <table class="table table-hover"  style="margin-top:10px;"> 
                                 <thead> 
                                     <tr> 
                                         <th>สถานะ</th> 
@@ -77,19 +77,22 @@
                             </table>
                         </div>
                         <div id="booking-activity" class="tab-pane">
-                            <ul class="list-group" style="margin-top:10px;">
-                                {{#each Booking}}
-                                <li class="list-group-item">
-                                    <span class="badge">{{ConfirmMessage(this.confirm)}}</span>
-                                    {{#if this.confirm}}
-                                    <i class="fa fa-check-square-o"> </i>
-                                    {{else}}
-                                    <i class="fa fa-edit edit-booking custom-cursor"> </i>
-                                    {{/if}}
-                                    {{theSpaceData(this.space_id)}}
-                                </li>
-                                {{/each}}
-                            </ul>
+                            <table class="table table-hover"  style="margin-top:10px;"> 
+                                <thead> 
+                                    <tr> 
+                                        <th>รายละเอียด</th> 
+                                        <th>สถานะ</th> 
+                                    </tr> 
+                                </thead> 
+                                <tbody> 
+                                    {{#each Booking}}
+                                    <tr> 
+                                        <td>{{theBookingData(this.space_id)}}</td> 
+                                        <td>{{ConfirmMessage(this.confirm)}}</td> 
+                                    </tr> 
+                                    {{/each}}
+                                </tbody> 
+                            </table>
                         </div>
                     </div>
                 </div>
