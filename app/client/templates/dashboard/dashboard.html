@@ -50,7 +50,9 @@
                         <li class="list-group-item">
                             <span class="badge">{{ConfirmMessage(this.confirm)}}</span>
                             <i class="fa fa-edit edit-booking"> </i>
+                            {{unless this.confirm}}
                             {{theSpaceData(this.space_id)}}
+                            {{/unless}}
                         </li>
                         {{/each}}
                     </ul>
