@@ -109,7 +109,12 @@ venueFacility = new ReactiveArray();
 Template.Booking.helpers({
     Booking: function(){
         var booking = Bookings.findOne(this.id);
-        return booking;
+        if(booking.confirm){
+            Router.go('dashboard');
+        }
+        else{
+            return booking;
+        }
     },
     Space: function(){
         var booking = Bookings.findOne(this.id);
