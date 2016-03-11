@@ -80,6 +80,11 @@ Template.Bookingbox.helpers({
             return data;
         }
     },
+    Space: function(){
+        var spaceID = Router.current().data().id;
+        var space = Spaces.findOne(spaceID);
+        return space;
+    },
     Booking : function(){
         return {
             duration:BookingDuration.get(),
