@@ -54,7 +54,6 @@
                             <table class="table table-hover"  style="margin-top:10px;"> 
                                 <thead> 
                                     <tr> 
-                                        <th>สถานะ</th> 
                                         <th>รายละเอียด</th> 
                                         <th>จัดการ</th> 
                                     </tr> 
@@ -62,8 +61,14 @@
                                 <tbody> 
                                     {{#each Booking}}
                                     <tr> 
-                                        <td>{{ConfirmMessage(this.confirm)}}</td> 
-                                        <td>{{theSpaceData(this.space_id)}}</td> 
+                                        <td>
+                                            {{#if this.confirm}}
+                                            <i class="fa fa-check-square-o"> </i>
+                                            {{else}}
+                                            <i class="fa fa-edit"> </i>
+                                            {{/if}}
+                                            {{theSpaceData(this.space_id)}}
+                                        </td> 
                                         <td>
                                             {{#if this.confirm}}
                                             <i class="fa fa-check-square-o"> </i>
