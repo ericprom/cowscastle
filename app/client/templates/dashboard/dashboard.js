@@ -21,8 +21,8 @@ Template.Dashboard.helpers({
     },
     theSpaceData: function(data){
         var space = Spaces.findOne(data);
-        var vanue = Venues.findOne(space.venue_id);
-        return space.type+"@"+vanue.name;
+        var venue = Venues.findOne(space.venue_id);
+        return space.type+"@"+venue.name;
         
     },
     Verified: function(){

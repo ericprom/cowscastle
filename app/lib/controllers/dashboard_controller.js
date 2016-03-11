@@ -7,6 +7,7 @@ DashboardController = RouteController.extend({
 
   subscriptions: function() {
     this.subscribe('To', {'collection':'Staffs'}).wait();
+    this.subscribe('To', {'collection':'Venues'}).wait();
     this.subscribe('To', {'collection':'Spaces'}).wait();
     this.subscribe('To',{
         'collection':'Bookings',
