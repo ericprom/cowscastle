@@ -271,6 +271,7 @@ Meteor.methods({
                 duration:space.duration,
                 amount:space.amount,
                 type:space.type,
+                confirm: false,
                 createdBy:this.userId,
                 createdAt: new Date
             });
