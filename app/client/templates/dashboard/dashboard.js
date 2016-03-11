@@ -8,6 +8,10 @@ Template.Dashboard.events({
 /* Dashboard: Helpers */
 /*****************************************************************************/
 Template.Dashboard.helpers({
+    Booking: function(){
+        var booking = Bookings.find().fetch();
+        return booking;
+    },
     Verified: function(){
         var user = Meteor.user();
         var emails = user.emails;

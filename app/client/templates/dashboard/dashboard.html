@@ -46,9 +46,11 @@
                        <span>Booking Activity</span>
                     </div>
                     <div class="row" style="margin-top:10px;">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                        No Booking at this time.
-                        </div>
+                        {{#each Booking}}
+                            <div class="col-xs-12">
+                                {{this}}
+                            </div>
+                        {{/each}}
                     </div>
                 </div>
             </div>
