@@ -277,4 +277,17 @@ Meteor.methods({
             return result;
         }
     },
+
+    'confirmed/booking': function(booking){
+        if (Meteor.isServer){
+            var result = Bookings.update(booking.id,{
+                '$set': {
+                    'confirm': true,
+                    'updatedBy':this.userId,
+                    'updatedAt': new Date
+                }
+            });
+            return result;
+        }
+    },
 });

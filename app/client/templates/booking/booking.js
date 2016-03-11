@@ -41,7 +41,17 @@ Template.Booking.events({
     }, 200),
     'click .book-now-btn': function(event, template){
         event.preventDefault();
-        toastr.warning('ระบบระบบได้ทำการจองเรียบ้อยแล้ว', 'Cows Castle');
+            var booking = {
+                id: this.id
+            }
+            Meteor.call('confirmed/booking',booking,function(err,resp){
+                if(resp){
+                    toastr.success('ระบบระบบได้ทำการจองเรียบ้อยแล้ว', 'Cows Castle');
+                }
+                else{
+                    toastr.warning('เกิดข้อผิดพลาด!', 'Warning!');
+                }
+            });
     },
     'click .pay-by-credit-btn': function(event, template){
         event.preventDefault();
