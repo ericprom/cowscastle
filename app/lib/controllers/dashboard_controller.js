@@ -7,7 +7,12 @@ DashboardController = RouteController.extend({
 
   subscriptions: function() {
     this.subscribe('To', {'collection':'Staffs'}).wait();
-    this.subscribe('To', {'collection':'Bookings'}).wait();
+    this.subscribe('To',{
+        'collection':'Bookings',
+        'query':{
+            createdBy : Meteor.userId()
+        }
+    });
     this.subscribe('To', {'collection':'Teams'}).wait();
   },
 
