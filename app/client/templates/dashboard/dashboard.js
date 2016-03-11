@@ -22,7 +22,7 @@ Template.Dashboard.helpers({
     theSpaceData: function(data){
         var space = Spaces.findOne(data);
         var venue = Venues.findOne(space.venue_id);
-        return space.type+"@"+venue.name;
+        return space.type+" @ "+venue.name;
         
     },
     Verified: function(){
