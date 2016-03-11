@@ -29,9 +29,8 @@ Template.Dashboard.helpers({
         return space.type+" @ "+venue.name;
         
     },
-    theBookingData:function(){
+    theBookingData:function(data){
         var space = Spaces.findOne(data);
-        var venue = Venues.findOne(space.venue_id);
         return "Booking "+space.type;
     },
     Verified: function(){
