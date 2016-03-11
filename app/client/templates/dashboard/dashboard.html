@@ -92,8 +92,8 @@
                                     {{#each Booking}}
                                     <tr> 
                                         <td>{{theBookingData(this.space_id)}}</td> 
-                                        <td>{{unixToDate(this.date)}}</td> 
-                                        <td>{{ConfirmMessage(this.confirm)}}</td> 
+                                        <td class="text-center">{{unixToDate(this.date)}}</td> 
+                                        <td class="text-center">{{ConfirmMessage(this.confirm)}}</td> 
                                     </tr> 
                                     {{/each}}
                                 </tbody> 
