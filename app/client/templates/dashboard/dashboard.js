@@ -2,6 +2,10 @@
 /* Dashboard: Event Handlers */
 /*****************************************************************************/
 Template.Dashboard.events({
+    'click .edit-booking': function(event, template){
+        event.preventDefault();
+        Router.go('booking',{_id:this._id});
+    },
 });
 
 /*****************************************************************************/
