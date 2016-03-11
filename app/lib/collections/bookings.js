@@ -25,7 +25,7 @@ Schemas.Booking = new SimpleSchema({
       type: Boolean,
       label: 'Confirm status',
       optional: true
-    }
+    },
     createdBy:{
       type: String,
       optional: true
