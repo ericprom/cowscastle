@@ -81,6 +81,7 @@
                                 <thead> 
                                     <tr> 
                                         <th>รายละเอียด</th> 
+                                        <th>วันที่</th> 
                                         <th>สถานะ</th> 
                                     </tr> 
                                 </thead> 
@@ -88,6 +89,7 @@
                                     {{#each Booking}}
                                     <tr> 
                                         <td>{{theBookingData(this.space_id)}}</td> 
+                                        <td>{{unixToDate(this.date)}}</td> 
                                         <td>{{ConfirmMessage(this.confirm)}}</td> 
                                     </tr> 
                                     {{/each}}

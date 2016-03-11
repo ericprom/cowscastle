@@ -33,6 +33,9 @@ Template.Dashboard.helpers({
         var space = Spaces.findOne(data);
         return "Booking "+space.type;
     },
+    unixToDate: function(value){
+        return moment.unix(value).format("M/D/YYYY");
+    },
     Verified: function(){
         var user = Meteor.user();
         var emails = user.emails;
