@@ -279,9 +279,9 @@ Meteor.methods({
         }
     },
 
-    'confirm/booking': function(booking){
+    'confirm/booking': function(data){
         if (Meteor.isServer){
-            var result = Bookings.update(booking.id,{
+            var result = Bookings.update(data.id,{
                 '$set': {
                     'confirm': true,
                     'updatedBy':this.userId,
