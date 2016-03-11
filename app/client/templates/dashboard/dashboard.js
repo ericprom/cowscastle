@@ -12,6 +12,13 @@ Template.Dashboard.helpers({
         var booking = Bookings.find().fetch();
         return booking;
     },
+    Confirm: function(data){
+        var status = 'ไม่ยืนยัน';
+        if(data){
+            status = 'ยืนยัน';
+        }
+        return status;
+    },
     theSpace: function(space){
         var space = Spaces.findOne();
         return space;
