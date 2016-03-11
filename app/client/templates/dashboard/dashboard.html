@@ -45,21 +45,36 @@
                     <div class="strike">
                        <span>Booking Activity</span>
                     </div>
-                    <ul class="list-group" style="margin-top:10px;">
-                        {{#each Booking}}
-                        <li class="list-group-item">
-                            <span class="badge">{{ConfirmMessage(this.confirm)}}</span>
-                            {{#if this.confirm}}
-                            <i class="fa fa-check-square-o"> </i>
-                            {{else}}
-                            <i class="fa fa-edit edit-booking custom-cursor"> </i>
-                            {{/if}}
-                            {{theSpaceData(this.space_id)}}
-                        </li>
-                        {{/each}}
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active"><a href="#your-booking" data-toggle="tab">Your booking</a></li>
+                        <li><a href="#booking-activity" data-toggle="tab">Booking activity</a></li>
                     </ul>
+                    <div class="tab-content">
+                        <div id="your-booking" class="tab-pane active">
+                            <ul class="list-group" style="margin-top:10px;">
+                                {{#each Booking}}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ConfirmMessage(this.confirm)}}</span>
+                                    {{#if this.confirm}}
+                                    <i class="fa fa-check-square-o"> </i>
+                                    {{else}}
+                                    <i class="fa fa-edit edit-booking custom-cursor"> </i>
+                                    {{/if}}
+                                    {{theSpaceData(this.space_id)}}
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                        <div id="booking-activity" class="tab-pane">
+                            No booking activity
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+
+                        
+                  
