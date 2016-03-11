@@ -44,7 +44,8 @@ Template.Booking.events({
             var booking = {
                 id: this.id
             }
-            Meteor.call('confirmed/booking',booking,function(err,resp){
+            Meteor.call('confirm/booking',booking,function(err,resp){
+                console.log(err,resp);
                 if(resp){
                     toastr.success('ระบบระบบได้ทำการจองเรียบ้อยแล้ว', 'Cows Castle');
                 }

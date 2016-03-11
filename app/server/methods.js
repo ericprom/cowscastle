@@ -279,7 +279,7 @@ Meteor.methods({
         }
     },
 
-    'confirmed/booking': function(booking){
+    'confirm/booking': function(booking){
         if (Meteor.isServer){
             var result = Bookings.update(booking.id,{
                 '$set': {
