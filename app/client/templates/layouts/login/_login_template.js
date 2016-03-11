@@ -12,16 +12,16 @@ Template.LoginTemplate.events({
         }
     });
   },
-  // "click #githubLoginButton": function(event, template) {
-  //   event.preventDefault();
-  //   Meteor.loginWithGithub({}, function(err){
-  //       if (err) {
-  //           console.log("Github login didn't work!",err);
-  //       }else{
-  //           console.log("Github login work!");
-  //       }
-  //   });
-  // },
+  "click #githubLoginButton": function(event, template) {
+    event.preventDefault();
+    Meteor.loginWithGithub({}, function(err){
+        if (err) {
+            console.log("Github login didn't work!",err);
+        }else{
+            console.log("Github login work!");
+        }
+    });
+  },
   "click #systemSignupButton": function(event, template) {
     event.preventDefault();
     authLoginForm.set(false);

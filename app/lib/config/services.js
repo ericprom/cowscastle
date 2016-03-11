@@ -12,15 +12,15 @@ if (Meteor.isServer) {
 			upsert: true
 		});
 		// Add GitHub configuration entry
-		ServiceConfiguration.configurations.update({
-			"service": "github"
-		}, {
-			$set: {
-				"clientId": "c5c7aaf5a95c651d5cfb",
-				"secret": "d8f108bcee14a0d876c0dbd841d4258e444368ad"
-			}
-		}, {
-			upsert: true
-		});
+		// ServiceConfiguration.configurations.update({
+		// 	"service": "github"
+		// }, {
+		// 	$set: {
+		// 		"clientId": "c5c7aaf5a95c651d5cfb",
+		// 		"secret": "d8f108bcee14a0d876c0dbd841d4258e444368ad"
+		// 	}
+		// }, {
+		// 	upsert: true
+		// });
 	});
 }
