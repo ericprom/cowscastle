@@ -41,7 +41,7 @@ Template.Booking.events({
     }, 200),
     'click .book-now-btn': function(event, template){
         event.preventDefault();
-            var bookingID = Router.current().data().params.id;
+            var bookingID = Router.current().data().id;
             var data = {
                 id: bookingID
             }
