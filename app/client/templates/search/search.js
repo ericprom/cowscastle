@@ -11,6 +11,24 @@ Template.Search.events({
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();
+        var keyword = '';
+        if(Router.current().data() && Router.current().data().keyword !='')
+            keyword = Router.current().data().keyword;
+        var search = {
+            index: 'cowscastle',
+            type: 'space',
+            query: {
+                match: {
+                    _all: keyword
+                }
+            }
+        }
+        console.log(search);
+        // Meteor.call('elastic/search',search,function(err,resp){
+        //     var ids = _.map(resp,function(item){return item._id});
+        //     console.log(ids);
+        //     spaceIDs.set(ids);
+        // });
         advanceSearch.set(false);
     },
     'click .cancel-advance-search': function(event, template){
@@ -31,7 +49,7 @@ Template.Search.events({
         event.preventDefault();
         var space_id =  $(event.currentTarget).attr("space-id");
         Router.go('space',{_id:space_id});
-    },
+    }
 });
 
 /*****************************************************************************/
