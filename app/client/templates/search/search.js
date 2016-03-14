@@ -18,17 +18,26 @@ Template.Search.events({
             index: 'cowscastle',
             type: 'space',
             query: {
-                match: {
-                    _all: keyword
+                "filtered": {
+                    "query":  { 
+                        "match": { 
+                            "_all": keyword
+                        }
+                    },
+                    "filter": { 
+                        "term": { 
+                            "space.type": "Studio" 
+                        }
+                    }
                 }
             }
         }
         console.log(search);
-        // Meteor.call('elastic/search',search,function(err,resp){
-        //     var ids = _.map(resp,function(item){return item._id});
-        //     console.log(ids);
-        //     spaceIDs.set(ids);
-        // });
+        Meteor.call('elastic/search',search,function(err,resp){
+            var ids = _.map(resp,function(item){return item._id});
+            console.log(ids);
+            spaceIDs.set(ids);
+        });
         advanceSearch.set(false);
     },
     'click .cancel-advance-search': function(event, template){
