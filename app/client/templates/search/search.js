@@ -26,7 +26,7 @@ Template.Search.events({
                     },
                     "filter": { 
                         "term": { 
-                            "space.type": "Studio" 
+                            "space.type": "studio" 
                         }
                     }
                 }
