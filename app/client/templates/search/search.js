@@ -16,11 +16,12 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
-        var from_price_to_price = searchPrice.get();
+        var search_price = searchPrice.get();
         var search_per_day = {
             "range": {
                 "space.per_day": {
-                    from_price_to_price
+                    "from":search_price.from,
+                    "to":search_price.to
                 }
             }
         }
