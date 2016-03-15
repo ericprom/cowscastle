@@ -8,7 +8,7 @@ searchType = new ReactiveVar({
 searchPrice = new ReactiveVar({"range": {
                         "space.per_day": {
                             "from":"100",
-                            "to":"20000"
+                            "to":"10000"
                         }
                     }});
 searchPriceFrom = new ReactiveVar();
@@ -25,7 +25,7 @@ priceList = new ReactiveArray([
 searchPriceBy = new ReactiveVar(2);
 searchProvince = new ReactiveVar({
         "term" : { 
-            "venue.location.province" : "กรุงเทพ"
+            "venue.location.province" : "กรุงเทพมหานคร"
         }
      });
 /*****************************************************************************/
