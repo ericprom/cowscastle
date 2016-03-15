@@ -44,7 +44,38 @@ Template.Search.events({
                 "venue.location.province" : search_province
             }
         });
-        console.log(searchProvince.get());
+        var keyword = '';
+        if(Router.current().data() && Router.current().data().keyword !='')
+            keyword = Router.current().data().keyword;
+        var search_space_type = searchType.get();
+        var search_by_province = searchProvince.get();
+        var search_price_range = searchPrice.get();
+        var search = {
+            index: 'cowscastle',
+            type: 'space',
+            query: {
+                "filtered": {
+                    "query":  { 
+                        "match": { 
+                            "_all": keyword
+                        }
+                    },
+                    "filter": { 
+                        "bool" : {
+                            "must" : [
+                                search_space_type,
+                                search_by_province,
+                                search_price_range
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+        Meteor.call('elastic/search',search,function(err,resp){
+            var ids = _.map(resp,function(item){return item._id});
+            spaceIDs.set(ids);
+        });
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();
@@ -120,6 +151,8 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_space_type = searchType.get();
+        var search_by_province = searchProvince.get();
+        var search_price_range = searchPrice.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -133,7 +166,9 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                search_space_type
+                                search_space_type,
+                                search_by_province,
+                                search_price_range
                             ]
                         }
                     }
@@ -321,6 +356,7 @@ Template.Search.onRendered(function () {
                     });
                     break;
             }
+            var search_by_province = searchProvince.get();
             var search_price_range = searchPrice.get();
             var search = {
                 index: 'cowscastle',
@@ -336,6 +372,7 @@ Template.Search.onRendered(function () {
                             "bool" : {
                                 "must" : [
                                     search_space_type,
+                                    search_by_province,
                                     search_price_range
                                 ]
                             }
