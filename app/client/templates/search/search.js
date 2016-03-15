@@ -9,6 +9,10 @@ searchPrice = new ReactiveVar({"range": {
                     }});
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
+
+listType = new ReactiveArray([{id:1,name:'โต๊ะทำงาน',active:false},
+      {id:2,name:'ห้องประชุม',active:false},
+      {id:3,name:'สตูดิโอ',active:false}]);
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -171,13 +175,9 @@ Template.Search.helpers({
 
 
 
-  spaceList: function(){
-    return [
-      {id:1,name:'โต๊ะทำงาน',active:false},
-      {id:2,name:'ห้องประชุม',active:false},
-      {id:3,name:'สตูดิโอ',active:false}
-    ];
-  },
+    spaceType: function(){
+        return listType.array();
+    },
   isTypeActive:function(){
     var status = 'btn-default';
     if(this.active){
