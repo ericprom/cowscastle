@@ -12,9 +12,34 @@ Template.Dashboard.events({
 /* Dashboard: Helpers */
 /*****************************************************************************/
 Template.Dashboard.helpers({
-    Booking: function(){
+    MyBooking: function(){
         var booking = Bookings.find().fetch();
         return booking;
+    },
+    BookingActivity: function(){
+        var staffs = Staffs.find({staff_id: Meteor.userId()}).fetch();
+        var team_ids = _.map(staffs,function(item){return item.team_id});
+        if(team_ids.length>0){
+            var teams = Teams.find({_id: {$in: team_ids}}).fetch();
+            var venue_ids = _.map(teams,function(item){return item.venue_id});
+            if(venue_ids.length>0){
+                var spaces = Space.find({venue_id: {$in: venue_ids}}).fetch();
+                var space_ids = _.map(spaces,function(item){return item.space_id});
+                if(space_ids.length>0){
+                    var booking =  Bookings.find({space_id: {$in: space_ids}}).fetch();
+                    return booking;
+                }
+                else{
+                    return;
+                }
+            }
+            else{
+                return;
+            }
+        }
+        else{
+            return;
+        }
     },
     ConfirmMessage: function(data){
         var status = 'ไม่ยืนยัน';

@@ -59,7 +59,7 @@
                                     </tr> 
                                 </thead> 
                                 <tbody> 
-                                    {{#each Booking}}
+                                    {{#each MyBooking}}
                                     <tr> 
                                         <td>
                                             {{#if this.confirm}}
@@ -92,7 +92,7 @@
                                     </tr> 
                                 </thead> 
                                 <tbody> 
-                                    {{#each Booking}}
+                                    {{#each BookingActivity}}
                                     <tr> 
                                         <td>{{theBookingData(this.space_id)}}</td> 
                                         <td class="text-center">{{unixToDate(this.date)}}</td> 
