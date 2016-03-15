@@ -19,6 +19,19 @@ listType = new ReactiveArray([{id:1,name:'โต๊ะทำงาน',active:fa
 Template.Search.events({
     'click .advance-search': function(event, template){
         event.preventDefault();
+        $("#price-range").slider({
+            range: true,
+            min: 100,
+            max: 50000,
+            step: 100,
+            values: [200, 20000],
+            slide: function (e, ui) {
+                $('.from-price').html(ui.values[0]);
+                $('.to-price').html(ui.values[1]);
+                searchPriceFrom.set(ui.values[0]);
+                searchPriceTo.set(ui.values[1]);
+            }
+        });
         advanceSearch.set(true);
     },
     'click .apply-advance-search': function(event, template){
@@ -49,10 +62,8 @@ Template.Search.events({
                 }
             }
         }
-        console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             var ids = _.map(resp,function(item){return item._id});
-            console.log(ids);
             spaceIDs.set(ids);
         });
         advanceSearch.set(false);
