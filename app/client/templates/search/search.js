@@ -72,6 +72,7 @@ Template.Search.events({
                 }
             }
         }
+        console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             var ids = _.map(resp,function(item){return item._id});
             spaceIDs.set(ids);
@@ -107,6 +108,7 @@ Template.Search.events({
                 }
             }
         }
+        console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             var ids = _.map(resp,function(item){return item._id});
             spaceIDs.set(ids);
@@ -175,6 +177,7 @@ Template.Search.events({
                 }
             }
         }
+        console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             var ids = _.map(resp,function(item){return item._id});
             spaceIDs.set(ids);
@@ -384,7 +387,6 @@ Template.Search.onRendered(function () {
                 console.log(search);
                 Meteor.call('elastic/search',search,function(err,resp){
                     var ids = _.map(resp,function(item){return item._id});
-
                     spaceIDs.set(ids);
                 });
             }, 1000);
