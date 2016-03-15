@@ -7,8 +7,9 @@ Schemas.VenueLocation = new SimpleSchema({
       optional: true
     },
     latlng: {
-        type: [Number],
-        decimal: true
+      type: [Number],
+      decimal: true,
+      optional: true
     },
     district: {
       type: String,
