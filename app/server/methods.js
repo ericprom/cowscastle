@@ -67,7 +67,7 @@ Meteor.methods({
             var result = Venues.insert({
                 name:venue.name,
                 location:{
-                    province:venue.province
+                    province: venue.province
                 },
                 createdBy:this.userId,
                 createdAt: new Date
