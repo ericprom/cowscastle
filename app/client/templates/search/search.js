@@ -1,7 +1,12 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
 searchType = new ReactiveVar({});
-searchPrice = new ReactiveVar({});
+searchPrice = new ReactiveVar({"range": {
+                        "space.per_day": {
+                            "from":"100",
+                            "to":"50000"
+                        }
+                    }});
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
 /*****************************************************************************/
