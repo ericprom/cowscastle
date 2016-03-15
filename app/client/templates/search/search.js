@@ -173,10 +173,17 @@ Template.Search.helpers({
 
   spaceList: function(){
     return [
-      {id:1,name:'โต๊ะทำงาน'},
-      {id:2,name:'ห้องประชุม'},
-      {id:3,name:'สตูดิโอ'}
+      {id:1,name:'โต๊ะทำงาน',active:false},
+      {id:2,name:'ห้องประชุม',active:false},
+      {id:3,name:'สตูดิโอ',active:false}
     ];
+  },
+  isTypeActive:function(){
+    var status = 'btn-default';
+    if(this.active){
+        status = 'btn-primary';
+    }
+    return status
   },
   typeList: function(){
     return [
