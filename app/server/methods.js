@@ -65,10 +65,10 @@ Meteor.methods({
     'create/castle': function(venue){
         if (Meteor.isServer){
             var result = Venues.insert({
-                name:venue.name,
-                location.province:venue.province,
-                createdBy:this.userId,
-                createdAt: new Date
+                'name':venue.name,
+                'location.province':venue.province,
+                'createdBy':this.userId,
+                'createdAt': new Date
             });
             if(result){
                 var team = Teams.insert({
