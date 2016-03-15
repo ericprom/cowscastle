@@ -26,7 +26,7 @@ Template.Dashboard.helpers({
              console.log("venue ids::"+venue_ids);
             if(venue_ids.length>0){
                 var spaces = Spaces.find({venue_id: {$in: venue_ids}}).fetch();
-                var space_ids = _.map(spaces,function(item){return item.space_id});
+                var space_ids = _.map(spaces,function(item){return item._id});
                 console.log("space ids::"+space_ids);
                 if(space_ids.length>0){
                     var booking =  Bookings.find({space_id: {$in: space_ids}}).fetch();
