@@ -58,6 +58,7 @@ Template.Search.events({
     'click .space-type': function(event, template){
         event.preventDefault();
         var spaceId = $(event.currentTarget).attr("id");
+        searchType.set({})
         switch(spaceId){
             case "1":
             case 1:
