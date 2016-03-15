@@ -23,10 +23,25 @@ priceList = new ReactiveArray([
     {id:2,name:'รายวัน'},
     {id:3,name:'รายเดือน'}]);
 searchPriceBy = new ReactiveVar(2);
+searchProvince = new ReactiveVar({
+        "term" : { 
+            "venue.location.province" : "กรุงเทพ"
+        }
+     });
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
 Template.Search.events({
+
+    'change select' : function(event, template){
+        event.preventDefault();
+        var search_province = $('select[name=search-provincee]').val();
+        searchProvince.set({
+            "term" : { 
+                "venue.location.province" : search_province
+            }
+        });
+    },
     'click .advance-search': function(event, template){
         event.preventDefault();
         advanceSearch.set(true);
@@ -36,8 +51,9 @@ Template.Search.events({
         var keyword = '';
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
-        var search_type = searchType.get();
-        var search_price = searchPrice.get();
+        var search_space_type = searchType.get();
+        var search_by_province = searchProvince.get();
+        var search_price_range = searchPrice.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -51,8 +67,9 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                search_type,
-                                search_price
+                                search_space_type,
+                                search_by_province,
+                                search_price_range
                             ]
                         }
                     }
@@ -102,7 +119,7 @@ Template.Search.events({
         var keyword = '';
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
-        var search_type = searchType.get();
+        var search_space_type = searchType.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -116,7 +133,7 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                search_type
+                                search_space_type
                             ]
                         }
                     }
@@ -256,24 +273,19 @@ Template.Search.onRendered(function () {
      $("#price-range").slider({
         range: true,
         min: 100,
-        max: 10000,
+        max: 50000,
         step: 100,
-        values: [200, 3000],
+        values: [100, 10000],
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
             searchPriceFrom.set(ui.values[0]);
-            if(ui.values[0]>9999){
-                $('.to-price').html("10000+");
-                searchPriceTo.set(100000);
-            }else{
-                $('.to-price').html(ui.values[1]);
-                searchPriceTo.set(ui.values[1]);
-            }
+            $('.to-price').html(ui.values[1]);
+            searchPriceTo.set(ui.values[1]);
 
             var keyword = '';
             if(Router.current().data() && Router.current().data().keyword !='')
                 keyword = Router.current().data().keyword;
-            var search_type = searchType.get();
+            var search_space_type = searchType.get();
             switch(searchPriceBy.get()){
                 case "1":
                 case 1:
@@ -309,7 +321,7 @@ Template.Search.onRendered(function () {
                     });
                     break;
             }
-            var search_price = searchPrice.get();
+            var search_price_range = searchPrice.get();
             var search = {
                 index: 'cowscastle',
                 type: 'space',
@@ -323,8 +335,8 @@ Template.Search.onRendered(function () {
                         "filter": { 
                             "bool" : {
                                 "must" : [
-                                    search_type,
-                                    search_price
+                                    search_space_type,
+                                    search_price_range
                                 ]
                             }
                         }
