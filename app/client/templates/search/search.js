@@ -1,6 +1,7 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
 searchType = new ReactiveVar({});
+searchPrice = new ReactiveVar({});
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
 /*****************************************************************************/
@@ -17,14 +18,7 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
-        var search_price_per_day = {
-            "range": {
-                "space.per_day": {
-                    "from":searchPriceFrom.get(),
-                    "to":searchPriceTo.get()
-                }
-            }
-        }
+        var search_price = searchPrice.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -39,7 +33,7 @@ Template.Search.events({
                         "bool" : {
                             "must" : [
                                 search_type,
-                                search_price_per_day
+                                search_price
                             ]
                         }
                     }
@@ -60,9 +54,9 @@ Template.Search.events({
     },
     'click .space-type': function(event, template){
         event.preventDefault();
-        var spaceId = $(event.currentTarget).attr("id");
+        var typeId = $(event.currentTarget).attr("id");
         searchType.set({})
-        switch(spaceId){
+        switch(typeId){
             case "1":
             case 1:
                 searchType.set({
@@ -89,6 +83,47 @@ Template.Search.events({
                 break;
         }
         console.log(searchType.get());
+    },
+    'click .price-type': function(event, template){
+        event.preventDefault();
+        var priceId = $(event.currentTarget).attr("id");
+        searchPrice.set({})
+        switch(priceId){
+            case "1":
+            case 1:
+                searchPrice.set({
+                    "range": {
+                        "space.per_hour": {
+                            "from":searchPriceFrom.get(),
+                            "to":searchPriceTo.get()
+                        }
+                    }
+                });
+                break;
+            case "2":
+            case 2:
+                searchPrice.set({
+                    "range": {
+                        "space.per_day": {
+                            "from":searchPriceFrom.get(),
+                            "to":searchPriceTo.get()
+                        }
+                    }
+                });
+                break;
+            case "3":
+            case 3:
+                searchPrice.set({
+                    "range": {
+                        "space.per_month": {
+                            "from":searchPriceFrom.get(),
+                            "to":searchPriceTo.get()
+                        }
+                    }
+                });
+                break;
+        }
+        console.log(searchPrice.get());
     },
     'click .space-list': function(event, template){
         event.preventDefault();
