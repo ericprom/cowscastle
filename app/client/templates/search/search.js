@@ -32,8 +32,11 @@ searchProvince = new ReactiveVar({
 /* Search: Event Handlers */
 /*****************************************************************************/
 Template.Search.events({
-
-    'change select' : function(event, template){
+    'click .advance-search': function(event, template){
+        event.preventDefault();
+        advanceSearch.set(true);
+    },
+    'change .search-province' : function(event, template){
         event.preventDefault();
         var search_province = $('select[name=search-provincee]').val();
         searchProvince.set({
@@ -41,10 +44,6 @@ Template.Search.events({
                 "venue.location.province" : search_province
             }
         });
-    },
-    'click .advance-search': function(event, template){
-        event.preventDefault();
-        advanceSearch.set(true);
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();

@@ -62,9 +62,9 @@
                                 <h5>จังหวัด:</h5>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select class="form-control input-lg"  name="search-province">
+                                <select class="form-control input-lg search-province"  name="search-province">
                                     {{#each provinceList}}
-                                    <option>{{this}}</option>
+                                    <option value="{{this}}">{{this}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-12">
                                 <div class="checkbox">
-                                    <label><input type="checkbox" name="instant-booking" value="true">Instant Booking</label>
+                                    <label><input type="checkbox" name="search-instant-booking" value="true">Instant Booking</label>
                                 </div>
                             </div>
                         </div>
