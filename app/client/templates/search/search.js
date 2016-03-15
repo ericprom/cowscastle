@@ -32,14 +32,14 @@ Template.Search.events({
                                         "space.type" : "studio"
                                     }
                                 },
-                                {
-                                    "range": {
-                                        "space.per_day": {
-                                            "from": "10",
-                                            "to": "20000"
-                                        }
-                                    }
-                                }
+                                // {
+                                //     "range": {
+                                //         "space.per_day": {
+                                //             "from": "10",
+                                //             "to": "20000"
+                                //         }
+                                //     }
+                                // }
                             ]
                         }
                     }
