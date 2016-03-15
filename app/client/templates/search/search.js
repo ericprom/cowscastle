@@ -254,14 +254,19 @@ Template.Search.onRendered(function () {
      $("#price-range").slider({
         range: true,
         min: 100,
-        max: 50000,
+        max: 10000,
         step: 100,
-        values: [200, 20000],
+        values: [200, 3000],
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
-            $('.to-price').html(ui.values[1]);
             searchPriceFrom.set(ui.values[0]);
-            searchPriceTo.set(ui.values[1]);
+            if(){
+                $('.to-price').html(ui.values[1]);
+                searchPriceTo.set(ui.values[1]);
+            }else{
+                $('.to-price').html("10000+");
+                searchPriceTo.set(100000);
+            }
 
             var keyword = '';
             if(Router.current().data() && Router.current().data().keyword !='')
