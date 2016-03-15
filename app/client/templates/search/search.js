@@ -38,7 +38,7 @@ Template.Search.events({
     },
     'change .search-province' : function(event, template){
         event.preventDefault();
-        var search_province = $('select[name=search-provincee]').val();
+        var search_province = $('select[name=search-province]').val();
         searchProvince.set({
             "term" : { 
                 "venue.location.province" : search_province
