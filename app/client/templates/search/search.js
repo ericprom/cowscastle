@@ -59,6 +59,7 @@ Template.Search.events({
         event.preventDefault();
         var spaceId = $(event.currentTarget).attr("id");
         switch(spaceId){
+            case "1":
             case 1:
                 searchType.set({
                     "term" : { 
@@ -66,6 +67,7 @@ Template.Search.events({
                     }
                 });
                 break;
+            case "2":
             case 2:
                 searchType.set({
                     "term" : { 
@@ -73,6 +75,7 @@ Template.Search.events({
                     }
                 });
                 break;
+            case "3":
             case 3:
                 searchType.set({
                     "term" : { 
