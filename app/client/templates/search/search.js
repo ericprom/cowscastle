@@ -80,6 +80,7 @@ Template.Search.events({
                 });
                 break;
         }
+        console.log(searchType.get());
     },
     'click .space-list': function(event, template){
         event.preventDefault();
