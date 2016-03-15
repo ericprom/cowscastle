@@ -25,7 +25,7 @@ Template.Dashboard.helpers({
             var venue_ids = _.map(teams,function(item){return item.venue_id});
              console.log("venue ids::"+venue_ids);
             if(venue_ids.length>0){
-                var spaces = Space.find({venue_id: {$in: venue_ids}}).fetch();
+                var spaces = Spaces.find({venue_id: {$in: venue_ids}}).fetch();
                 var space_ids = _.map(spaces,function(item){return item.space_id});
                 console.log("space ids::"+space_ids);
                 if(space_ids.length>0){
