@@ -66,6 +66,7 @@ Meteor.methods({
         if (Meteor.isServer){
             var result = Venues.insert({
                 name:venue.name,
+                location.province:venue.province,
                 createdBy:this.userId,
                 createdAt: new Date
             });
