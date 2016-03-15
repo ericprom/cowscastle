@@ -153,10 +153,6 @@ Template.Search.helpers({
         return poster;
     },
 
-
-
-
-
     spaceType: function(){
         return listType.array();
     },
@@ -267,37 +263,36 @@ Tracker.autorun(function(){
     }
 });
 function elasticSearch(){
-     var keyword = '';
-        if(Router.current().data() && Router.current().data().keyword !='')
-            keyword = Router.current().data().keyword;
-        var search_space_type = searchType.get();
-        var search_by_province = searchProvince.get();
-        var search_price_range = searchPrice.get();
-        var search = {
-            index: 'cowscastle',
-            type: 'space',
-            query: {
-                "filtered": {
-                    "query":  { 
-                        "match": { 
-                            "_all": keyword
-                        }
-                    },
-                    "filter": { 
-                        "bool" : {
-                            "must" : [
-                                search_space_type,
-                                search_by_province,
-                                search_price_range
-                            ]
-                        }
+    var keyword = '';
+    if(Router.current().data() && Router.current().data().keyword !='')
+        keyword = Router.current().data().keyword;
+    var search_space_type = searchType.get();
+    var search_by_province = searchProvince.get();
+    var search_price_range = searchPrice.get();
+    var search = {
+        index: 'cowscastle',
+        type: 'space',
+        query: {
+            "filtered": {
+                "query":  { 
+                    "match": { 
+                        "_all": keyword
+                    }
+                },
+                "filter": { 
+                    "bool" : {
+                        "must" : [
+                            search_space_type,
+                            search_by_province,
+                            search_price_range
+                        ]
                     }
                 }
             }
         }
-        console.log(search);
-        Meteor.call('elastic/search',search,function(err,resp){
-            var ids = _.map(resp,function(item){return item._id});
-            spaceIDs.set(ids);
-        });
+    }
+    Meteor.call('elastic/search',search,function(err,resp){
+        var ids = _.map(resp,function(item){return item._id});
+        spaceIDs.set(ids);
+    });
 }
