@@ -15,8 +15,8 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
-        var from_price = $('#search_from_price').val();
-        var to_price = $('#search_to_price').val();
+        var from_price = $('.from-price').html();
+        var to_price = $('.to-price').html();
         var search_per_day = {
             "range": {
                 "space.per_day": {
@@ -217,9 +217,7 @@ Template.Search.onRendered(function () {
         values: [200, 20000],
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
-            $('#search_from_price').val(ui.values[0]);
             $('.to-price').html(ui.values[1]);
-            $('#search_to_price').val(ui.values[1]);
         }
     });
 });
