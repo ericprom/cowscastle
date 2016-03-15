@@ -4,7 +4,7 @@ searchType = new ReactiveVar({});
 searchPrice = new ReactiveVar({"range": {
                         "space.per_day": {
                             "from":"100",
-                            "to":"50000"
+                            "to":"20000"
                         }
                     }});
 searchPriceFrom = new ReactiveVar();
