@@ -25,8 +25,22 @@ Template.Search.events({
                         }
                     },
                     "filter": { 
-                        "term": { 
-                            "space.type": "studio" 
+                        "bool" : {
+                            "must" : [
+                                {
+                                    "term" : { 
+                                        "space.type" : "studio"
+                                    }
+                                },
+                                {
+                                    "range": {
+                                        "space.per_day": {
+                                            "from": "10",
+                                            "to": "20000"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
