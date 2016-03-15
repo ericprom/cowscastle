@@ -91,7 +91,34 @@ Template.Search.events({
                 });
                 break;
         }
-        console.log(searchType.get());
+         var keyword = '';
+        if(Router.current().data() && Router.current().data().keyword !='')
+            keyword = Router.current().data().keyword;
+        var search_type = searchType.get();
+        var search = {
+            index: 'cowscastle',
+            type: 'space',
+            query: {
+                "filtered": {
+                    "query":  { 
+                        "match": { 
+                            "_all": keyword
+                        }
+                    },
+                    "filter": { 
+                        "bool" : {
+                            "must" : [
+                                search_type
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+        Meteor.call('elastic/search',search,function(err,resp){
+            var ids = _.map(resp,function(item){return item._id});
+            spaceIDs.set(ids);
+        });
     },
     'click .price-type': function(event, template){
         event.preventDefault();
