@@ -19,18 +19,14 @@ Template.Dashboard.helpers({
     BookingActivity: function(){
         var staffs = Staffs.find({staff_id: Meteor.userId()}).fetch();
         var team_ids = _.map(staffs,function(item){return item.team_id});
-        console.log("team ids::"+team_ids);
         if(team_ids.length>0){
             var teams = Teams.find({_id: {$in: team_ids}}).fetch();
             var venue_ids = _.map(teams,function(item){return item.venue_id});
-             console.log("venue ids::"+venue_ids);
             if(venue_ids.length>0){
                 var spaces = Spaces.find({venue_id: {$in: venue_ids}}).fetch();
                 var space_ids = _.map(spaces,function(item){return item._id});
-                console.log("space ids::"+space_ids);
                 if(space_ids.length>0){
                     var booking =  Bookings.find({space_id: {$in: space_ids}}).fetch();
-                    console.log("booking::"+booking);
                     return booking;
                 }
                 else{
@@ -69,7 +65,7 @@ Template.Dashboard.helpers({
         var user = Meteor.user();
         var emails = user.emails;
         var data = {}
-        if(emails.length>0){
+        if(emails && emails.length>0){
             data.email=emails[0].verified;
         }
         if(user.profile.phone){
