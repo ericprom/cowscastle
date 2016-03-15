@@ -262,12 +262,12 @@ Template.Search.onRendered(function () {
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
             searchPriceFrom.set(ui.values[0]);
-            if(ui.values[0]<=9999){
-                $('.to-price').html(ui.values[1]);
-                searchPriceTo.set(ui.values[1]);
-            }else{
+            if(ui.values[0]>9999){
                 $('.to-price').html("10000+");
                 searchPriceTo.set(100000);
+            }else{
+                $('.to-price').html(ui.values[1]);
+                searchPriceTo.set(ui.values[1]);
             }
 
             var keyword = '';
