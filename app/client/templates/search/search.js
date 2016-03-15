@@ -22,6 +22,7 @@ priceList = new ReactiveArray([
     {id:1,name:'รายชั่วโมง'},
     {id:2,name:'รายวัน'},
     {id:3,name:'รายเดือน'}]);
+searchPriceBy = new ReactiveVar(2);
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -130,6 +131,7 @@ Template.Search.events({
     'click .price-type': function(event, template){
         event.preventDefault();
         var priceId = $(event.currentTarget).attr("id");
+        searchPriceBy.set(priceId);
         searchPrice.set({})
         switch(priceId){
             case "1":
@@ -272,6 +274,41 @@ Template.Search.onRendered(function () {
             if(Router.current().data() && Router.current().data().keyword !='')
                 keyword = Router.current().data().keyword;
             var search_type = searchType.get();
+            switch(searchPriceBy.get()){
+                case "1":
+                case 1:
+                    searchPrice.set({
+                        "range": {
+                            "space.per_hour": {
+                                "from":searchPriceFrom.get(),
+                                "to":searchPriceTo.get()
+                            }
+                        }
+                    });
+                    break;
+                case "2":
+                case 2:
+                    searchPrice.set({
+                        "range": {
+                            "space.per_day": {
+                                "from":searchPriceFrom.get(),
+                                "to":searchPriceTo.get()
+                            }
+                        }
+                    });
+                    break;
+                case "3":
+                case 3:
+                    searchPrice.set({
+                        "range": {
+                            "space.per_month": {
+                                "from":searchPriceFrom.get(),
+                                "to":searchPriceTo.get()
+                            }
+                        }
+                    });
+                    break;
+            }
             var search_price = searchPrice.get();
             var search = {
                 index: 'cowscastle',
