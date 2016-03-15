@@ -1,16 +1,8 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
-searchType = new ReactiveVar({
-                    "term" : { 
-                        "space.type" : "share"
-                    }
-                });
-searchPrice = new ReactiveVar({"range": {
-                        "space.per_day": {
-                            "from":"100",
-                            "to":"10000"
-                        }
-                    }});
+searchType = new ReactiveVar({});
+searchPrice = new ReactiveVar({});
+searchProvince = new ReactiveVar({});
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
 
@@ -23,11 +15,6 @@ priceList = new ReactiveArray([
     {id:2,name:'รายวัน'},
     {id:3,name:'รายเดือน'}]);
 searchPriceBy = new ReactiveVar(2);
-searchProvince = new ReactiveVar({
-        "term" : { 
-            "venue.location.province" : "กรุงเทพมหานคร"
-        }
-     });
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -44,71 +31,11 @@ Template.Search.events({
                 "venue.location.province" : search_province
             }
         });
-        var keyword = '';
-        if(Router.current().data() && Router.current().data().keyword !='')
-            keyword = Router.current().data().keyword;
-        var search_by_province = searchProvince.get();
-        var search = {
-            index: 'cowscastle',
-            type: 'space',
-            query: {
-                "filtered": {
-                    "query":  { 
-                        "match": { 
-                            "_all": keyword
-                        }
-                    },
-                    "filter": { 
-                        "bool" : {
-                            "must" : [
-                                search_by_province
-                            ]
-                        }
-                    }
-                }
-            }
-        }
-        console.log(search);
-        Meteor.call('elastic/search',search,function(err,resp){
-            var ids = _.map(resp,function(item){return item._id});
-            spaceIDs.set(ids);
-        });
+        elasticSearch();
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();
-        var keyword = '';
-        if(Router.current().data() && Router.current().data().keyword !='')
-            keyword = Router.current().data().keyword;
-        var search_space_type = searchType.get();
-        var search_by_province = searchProvince.get();
-        var search_price_range = searchPrice.get();
-        var search = {
-            index: 'cowscastle',
-            type: 'space',
-            query: {
-                "filtered": {
-                    "query":  { 
-                        "match": { 
-                            "_all": keyword
-                        }
-                    },
-                    "filter": { 
-                        "bool" : {
-                            "must" : [
-                                search_space_type,
-                                search_by_province,
-                                search_price_range
-                            ]
-                        }
-                    }
-                }
-            }
-        }
-        console.log(search);
-        Meteor.call('elastic/search',search,function(err,resp){
-            var ids = _.map(resp,function(item){return item._id});
-            spaceIDs.set(ids);
-        });
+        elasticSearch();
         advanceSearch.set(false);
     },
     'click .cancel-advance-search': function(event, template){
@@ -145,35 +72,7 @@ Template.Search.events({
                 });
                 break;
         }
-        var keyword = '';
-        if(Router.current().data() && Router.current().data().keyword !='')
-            keyword = Router.current().data().keyword;
-        var search_space_type = searchType.get();
-        var search = {
-            index: 'cowscastle',
-            type: 'space',
-            query: {
-                "filtered": {
-                    "query":  { 
-                        "match": { 
-                            "_all": keyword
-                        }
-                    },
-                    "filter": { 
-                        "bool" : {
-                            "must" : [
-                                search_space_type
-                            ]
-                        }
-                    }
-                }
-            }
-        }
-        console.log(search);
-        Meteor.call('elastic/search',search,function(err,resp){
-            var ids = _.map(resp,function(item){return item._id});
-            spaceIDs.set(ids);
-        });
+        elasticSearch();
     },
     'click .price-type': function(event, template){
         event.preventDefault();
@@ -272,7 +171,7 @@ Template.Search.helpers({
         return priceList.array();
     },
     provinceList: function(){
-        var province = ["กระบี่","กรุงเทพมหานคร","กาญจนบุรี","กาฬสินธุ์","กำแพงเพชร","ขอนแก่น","จันทบุรี","ฉะเชิงเทรา" ,"ชลบุรี","ชัยนาท","ชัยภูมิ","ชุมพร","เชียงราย","เชียงใหม่","ตรัง","ตราด","ตาก","นครนายก","นครปฐม","นครพนม","นครราชสีมา" ,"นครศรีธรรมราช","นครสวรรค์","นนทบุรี","นราธิวาส","น่าน","บุรีรัมย์","ปทุมธานี","ประจวบคีรีขันธ์","ปราจีนบุรี","ปัตตานี" ,"พะเยา","พังงา","พัทลุง","พิจิตร","พิษณุโลก","เพชรบุรี","เพชรบูรณ์","แพร่","ภูเก็ต","มหาสารคาม","มุกดาหาร","แม่ฮ่องสอน" ,"ยโสธร","ยะลา","ร้อยเอ็ด","ระนอง","ระยอง","ราชบุรี","ลพบุรี","ลำปาง","ลำพูน","เลย","ศรีสะเกษ","สกลนคร","สงขลา" ,"สตูล","สมุทรปราการ","สมุทรสงคราม","สมุทรสาคร","สระแก้ว","สระบุรี","สิงห์บุรี","สุโขทัย","สุพรรณบุรี","สุราษฎร์ธานี" ,"สุรินทร์","หนองคาย","หนองบัวลำภู","อยุธยา","อ่างทอง","อำนาจเจริญ","อุดรธานี","อุตรดิตถ์","อุทัยธานี","อุบลราชธานี"];
+        var province = ["กรุงเทพมหานคร","กระบี่","กาญจนบุรี","กาฬสินธุ์","กำแพงเพชร","ขอนแก่น","จันทบุรี","ฉะเชิงเทรา" ,"ชลบุรี","ชัยนาท","ชัยภูมิ","ชุมพร","เชียงราย","เชียงใหม่","ตรัง","ตราด","ตาก","นครนายก","นครปฐม","นครพนม","นครราชสีมา" ,"นครศรีธรรมราช","นครสวรรค์","นนทบุรี","นราธิวาส","น่าน","บุรีรัมย์","ปทุมธานี","ประจวบคีรีขันธ์","ปราจีนบุรี","ปัตตานี" ,"พะเยา","พังงา","พัทลุง","พิจิตร","พิษณุโลก","เพชรบุรี","เพชรบูรณ์","แพร่","ภูเก็ต","มหาสารคาม","มุกดาหาร","แม่ฮ่องสอน" ,"ยโสธร","ยะลา","ร้อยเอ็ด","ระนอง","ระยอง","ราชบุรี","ลพบุรี","ลำปาง","ลำพูน","เลย","ศรีสะเกษ","สกลนคร","สงขลา" ,"สตูล","สมุทรปราการ","สมุทรสงคราม","สมุทรสาคร","สระแก้ว","สระบุรี","สิงห์บุรี","สุโขทัย","สุพรรณบุรี","สุราษฎร์ธานี" ,"สุรินทร์","หนองคาย","หนองบัวลำภู","อยุธยา","อ่างทอง","อำนาจเจริญ","อุดรธานี","อุตรดิตถ์","อุทัยธานี","อุบลราชธานี"];
         return province;
     },
 });
@@ -311,10 +210,6 @@ Template.Search.onRendered(function () {
             searchPriceFrom.set(ui.values[0]);
             $('.to-price').html(ui.values[1]);
             searchPriceTo.set(ui.values[1]);
-
-            var keyword = '';
-            if(Router.current().data() && Router.current().data().keyword !='')
-                keyword = Router.current().data().keyword;
             switch(searchPriceBy.get()){
                 case "1":
                 case 1:
@@ -350,33 +245,9 @@ Template.Search.onRendered(function () {
                     });
                     break;
             }
-            var search_price_range = searchPrice.get();
-            var search = {
-                index: 'cowscastle',
-                type: 'space',
-                query: {
-                    "filtered": {
-                        "query":  { 
-                            "match": { 
-                                "_all": keyword
-                            }
-                        },
-                        "filter": { 
-                            "bool" : {
-                                "must" : [
-                                    search_price_range
-                                ]
-                            }
-                        }
-                    }
-                }
-            }
+            
             setTimeout(function(){
-                console.log(search);
-                Meteor.call('elastic/search',search,function(err,resp){
-                    var ids = _.map(resp,function(item){return item._id});
-                    spaceIDs.set(ids);
-                });
+               elasticSearch();
             }, 1000);
         }
     });
@@ -395,3 +266,38 @@ Tracker.autorun(function(){
         searchResults.set([]);
     }
 });
+function elasticSearch(){
+     var keyword = '';
+        if(Router.current().data() && Router.current().data().keyword !='')
+            keyword = Router.current().data().keyword;
+        var search_space_type = searchType.get();
+        var search_by_province = searchProvince.get();
+        var search_price_range = searchPrice.get();
+        var search = {
+            index: 'cowscastle',
+            type: 'space',
+            query: {
+                "filtered": {
+                    "query":  { 
+                        "match": { 
+                            "_all": keyword
+                        }
+                    },
+                    "filter": { 
+                        "bool" : {
+                            "must" : [
+                                search_space_type,
+                                search_by_province,
+                                search_price_range
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+        console.log(search);
+        Meteor.call('elastic/search',search,function(err,resp){
+            var ids = _.map(resp,function(item){return item._id});
+            spaceIDs.set(ids);
+        });
+}
