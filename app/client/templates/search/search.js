@@ -15,6 +15,16 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
+        var from_price = $('#search_from_price').value();
+        var to_price = $('#search_to_price').value();
+        var search_per_day = {
+            "range": {
+                "space.per_day": {
+                    "from": from_price,
+                    "to": to_price
+                }
+            }
+        }
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -29,14 +39,7 @@ Template.Search.events({
                         "bool" : {
                             "must" : [
                                 search_type,
-                                // {
-                                //     "range": {
-                                //         "space.per_day": {
-                                //             "from": "10",
-                                //             "to": "20000"
-                                //         }
-                                //     }
-                                // }
+                                search_per_day
                             ]
                         }
                     }
@@ -214,7 +217,9 @@ Template.Search.onRendered(function () {
         values: [200, 20000],
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
+            $('#search_from_price').value(ui.values[0]);
             $('.to-price').html(ui.values[1]);
+            $('#search_to_price').value(ui.values[1]);
         }
     });
 });
