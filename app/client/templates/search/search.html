@@ -17,7 +17,6 @@
                             </div>
                         </div>
                     </div>
-                    {{#if isAdvance}}
                     <hr>
                     <div class="row" style="margin-top:10px;">
                         <div class="col-md-2 col-sm-2 col-xs-12">
@@ -41,6 +40,7 @@
                             </div>
                         </div>
                     </div>
+                    {{#if isAdvance}}
                         <hr>
                         <div class="row" style="margin-top:10px;">
                             <div class="col-md-2 col-sm-2 col-xs-12">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                    {{#each typeList}}
+                                    {{#each priceType}}
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-default btn-lg price-type" id="{{id}}">{{name}}</button>
                                     </div>

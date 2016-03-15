@@ -10,28 +10,20 @@ searchPrice = new ReactiveVar({"range": {
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
 
-listType = new ReactiveArray([{id:1,name:'โต๊ะทำงาน',active:false},
-      {id:2,name:'ห้องประชุม',active:false},
-      {id:3,name:'สตูดิโอ',active:false}]);
+listType = new ReactiveArray([
+    {id:1,name:'โต๊ะทำงาน',active:false},
+    {id:2,name:'ห้องประชุม',active:false},
+    {id:3,name:'สตูดิโอ',active:false}]);
+priceList = new ReactiveArray([
+    {id:1,name:'รายชั่วโมง'},
+    {id:2,name:'รายวัน'},
+    {id:3,name:'รายเดือน'}]);
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
 Template.Search.events({
     'click .advance-search': function(event, template){
         event.preventDefault();
-        $("#price-range").slider({
-            range: true,
-            min: 100,
-            max: 50000,
-            step: 100,
-            values: [200, 20000],
-            slide: function (e, ui) {
-                $('.from-price').html(ui.values[0]);
-                $('.to-price').html(ui.values[1]);
-                searchPriceFrom.set(ui.values[0]);
-                searchPriceTo.set(ui.values[1]);
-            }
-        });
         advanceSearch.set(true);
     },
     'click .apply-advance-search': function(event, template){
@@ -223,12 +215,8 @@ Template.Search.helpers({
     }
     return status
   },
-  typeList: function(){
-    return [
-      {id:1,name:'รายชั่วโมง'},
-      {id:2,name:'รายวัน'},
-      {id:3,name:'รายเดือน'}
-    ];
+  priceType: function(){
+    return priceList.array();
   },
   provinceList: function(){
     var province = ["กระบี่","กรุงเทพมหานคร","กาญจนบุรี","กาฬสินธุ์","กำแพงเพชร","ขอนแก่น","จันทบุรี","ฉะเชิงเทรา" ,"ชลบุรี","ชัยนาท","ชัยภูมิ","ชุมพร","เชียงราย","เชียงใหม่","ตรัง","ตราด","ตาก","นครนายก","นครปฐม","นครพนม","นครราชสีมา" ,"นครศรีธรรมราช","นครสวรรค์","นนทบุรี","นราธิวาส","น่าน","บุรีรัมย์","ปทุมธานี","ประจวบคีรีขันธ์","ปราจีนบุรี","ปัตตานี" ,"พะเยา","พังงา","พัทลุง","พิจิตร","พิษณุโลก","เพชรบุรี","เพชรบูรณ์","แพร่","ภูเก็ต","มหาสารคาม","มุกดาหาร","แม่ฮ่องสอน" ,"ยโสธร","ยะลา","ร้อยเอ็ด","ระนอง","ระยอง","ราชบุรี","ลพบุรี","ลำปาง","ลำพูน","เลย","ศรีสะเกษ","สกลนคร","สงขลา" ,"สตูล","สมุทรปราการ","สมุทรสงคราม","สมุทรสาคร","สระแก้ว","สระบุรี","สิงห์บุรี","สุโขทัย","สุพรรณบุรี","สุราษฎร์ธานี" ,"สุรินทร์","หนองคาย","หนองบัวลำภู","อยุธยา","อ่างทอง","อำนาจเจริญ","อุดรธานี","อุตรดิตถ์","อุทัยธานี","อุบลราชธานี"];
