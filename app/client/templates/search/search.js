@@ -1,7 +1,8 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
 searchType = new ReactiveVar({});
-searchPrice = new ReactiveVar({});
+searchPriceFrom = new ReactiveVar();
+searchPriceTo = new ReactiveVar();
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -16,12 +17,11 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
-        var search_price = searchPrice.get();
-        var search_per_day = {
+        var search_price_per_day = {
             "range": {
                 "space.per_day": {
-                    "from":search_price.from,
-                    "to":search_price.to
+                    "from":searchPriceFrom.get(),
+                    "to":searchPriceTo.get()
                 }
             }
         }
@@ -39,7 +39,7 @@ Template.Search.events({
                         "bool" : {
                             "must" : [
                                 search_type,
-                                search_per_day
+                                search_price_per_day
                             ]
                         }
                     }
@@ -67,7 +67,7 @@ Template.Search.events({
             case 1:
                 searchType.set({
                     "term" : { 
-                        "space.type" : "share desk"
+                        "space.type" : "share"
                     }
                 });
                 break;
@@ -75,7 +75,7 @@ Template.Search.events({
             case 2:
                 searchType.set({
                     "term" : { 
-                        "space.type" : "meeting room"
+                        "space.type" : "meeting"
                     }
                 });
                 break;
@@ -218,11 +218,8 @@ Template.Search.onRendered(function () {
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
             $('.to-price').html(ui.values[1]);
-
-            searchPrice.set({
-                "from": ui.values[0],
-                "to": ui.values[1]
-            });
+            searchPriceFrom.set(ui.values[0]);
+            searchPriceFTo.set(ui.values[1]);
         }
     });
 });
