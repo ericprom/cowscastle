@@ -1,6 +1,7 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
 searchType = new ReactiveVar({});
+searchPrice = new ReactiveVar({});
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -15,13 +16,11 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_type = searchType.get();
-        var from_price = $('.from-price').html();
-        var to_price = $('.to-price').html();
+        var from_price_to_price = searchPrice.get();
         var search_per_day = {
             "range": {
                 "space.per_day": {
-                    "from": from_price,
-                    "to": to_price
+                    from_price_to_price
                 }
             }
         }
@@ -218,6 +217,11 @@ Template.Search.onRendered(function () {
         slide: function (e, ui) {
             $('.from-price').html(ui.values[0]);
             $('.to-price').html(ui.values[1]);
+
+            searchPrice.set({
+                "from": ui.values[0],
+                "to": ui.values[1]
+            });
         }
     });
 });
