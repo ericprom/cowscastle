@@ -44,6 +44,7 @@ Template.Search.events({
                 "venue.location.province" : search_province
             }
         });
+        console.log(searchProvince.get());
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();
