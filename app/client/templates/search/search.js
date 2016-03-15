@@ -47,9 +47,7 @@ Template.Search.events({
         var keyword = '';
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
-        var search_space_type = searchType.get();
         var search_by_province = searchProvince.get();
-        var search_price_range = searchPrice.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -63,9 +61,7 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                search_space_type,
-                                search_by_province,
-                                search_price_range
+                                search_by_province
                             ]
                         }
                     }
@@ -153,8 +149,6 @@ Template.Search.events({
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
         var search_space_type = searchType.get();
-        var search_by_province = searchProvince.get();
-        var search_price_range = searchPrice.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -168,9 +162,7 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                search_space_type,
-                                search_by_province,
-                                search_price_range
+                                search_space_type
                             ]
                         }
                     }
@@ -323,7 +315,6 @@ Template.Search.onRendered(function () {
             var keyword = '';
             if(Router.current().data() && Router.current().data().keyword !='')
                 keyword = Router.current().data().keyword;
-            var search_space_type = searchType.get();
             switch(searchPriceBy.get()){
                 case "1":
                 case 1:
@@ -359,7 +350,6 @@ Template.Search.onRendered(function () {
                     });
                     break;
             }
-            var search_by_province = searchProvince.get();
             var search_price_range = searchPrice.get();
             var search = {
                 index: 'cowscastle',
@@ -374,8 +364,6 @@ Template.Search.onRendered(function () {
                         "filter": { 
                             "bool" : {
                                 "must" : [
-                                    search_space_type,
-                                    search_by_province,
                                     search_price_range
                                 ]
                             }
