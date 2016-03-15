@@ -1,6 +1,6 @@
 searchResults = new ReactiveVar();
-isMeeting = new ReactiveVar(false);
 advanceSearch = new ReactiveVar(false);
+searchType = new ReactiveVar({});
 /*****************************************************************************/
 /* Search: Event Handlers */
 /*****************************************************************************/
@@ -27,11 +27,7 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                {
-                                    "term" : { 
-                                        "space.type" : "studio"
-                                    }
-                                },
+                                searchType.get(),
                                 // {
                                 //     "range": {
                                 //         "space.per_day": {
@@ -61,11 +57,28 @@ Template.Search.events({
     'click .space-type': function(event, template){
         event.preventDefault();
         var spaceId = $(event.currentTarget).attr("id");
-        if(spaceId==2){
-            isMeeting.set(true);
-        }
-        else{
-            isMeeting.set(false);
+        switch(spaceId){
+            case 1:
+                searchType.set({
+                    "term" : { 
+                        "space.type" : "share desk"
+                    }
+                });
+                break;
+            case 2:
+                searchType.set({
+                    "term" : { 
+                        "space.type" : "meeting room"
+                    }
+                });
+                break;
+            case 3:
+                searchType.set({
+                    "term" : { 
+                        "space.type" : "studio"
+                    }
+                });
+                break;
         }
     },
     'click .space-list': function(event, template){
