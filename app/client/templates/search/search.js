@@ -14,6 +14,7 @@ Template.Search.events({
         var keyword = '';
         if(Router.current().data() && Router.current().data().keyword !='')
             keyword = Router.current().data().keyword;
+        var search_type = searchType.get();
         var search = {
             index: 'cowscastle',
             type: 'space',
@@ -27,7 +28,7 @@ Template.Search.events({
                     "filter": { 
                         "bool" : {
                             "must" : [
-                                searchType.get(),
+                                search_type,
                                 // {
                                 //     "range": {
                                 //         "space.per_day": {
