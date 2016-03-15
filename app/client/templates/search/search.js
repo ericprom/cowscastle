@@ -219,7 +219,7 @@ Template.Search.onRendered(function () {
             $('.from-price').html(ui.values[0]);
             $('.to-price').html(ui.values[1]);
             searchPriceFrom.set(ui.values[0]);
-            searchPriceFTo.set(ui.values[1]);
+            searchPriceTo.set(ui.values[1]);
         }
     });
 });
