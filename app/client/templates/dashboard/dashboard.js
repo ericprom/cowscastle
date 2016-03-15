@@ -13,7 +13,7 @@ Template.Dashboard.events({
 /*****************************************************************************/
 Template.Dashboard.helpers({
     MyBooking: function(){
-        var booking = Bookings.find().fetch();
+        var booking = Bookings.find({createdBy:Meteor.userId()}).fetch();
         return booking;
     },
     BookingActivity: function(){
