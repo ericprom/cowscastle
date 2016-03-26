@@ -145,11 +145,9 @@ Template.Editcastle.events({
         var nearby = [];
         $('.set-nearby-place').map(function(){
             var check = $(this).find('input[name=nearby-place]').is(':checked');
-            $nearby_id = $(this).find('input[name=selected-nearby-id]');
             $place = $(this).find('input[name=selected-nearby-place]');
             nearby.push({
                 status: check,
-                nearby_id: $nearby_id.val(),
                 place: $place.val(),
             });
         });
