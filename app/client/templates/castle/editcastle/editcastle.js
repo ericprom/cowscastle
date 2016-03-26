@@ -741,6 +741,52 @@ Template.Editcastle.helpers({
             status = '';
         }
         return status;
+    },
+    weekList: function(){
+        return [
+            {id:'0',day:'อาทิตย์'},
+            {id:'1',day:'จันทร์'},
+            {id:'2',day:'อังคาร'},
+            {id:'3',day:'พุธ'},
+            {id:'4',day:'พฤหัส'},
+            {id:'5',day:'ศุกร์'},
+            {id:'6',day:'เสาร์'},
+        ];
+    },
+    isWeekCheck:function(){
+      var status = '';
+      var get = _.first(_.where(onAir.array(),{day: this.id}));
+      if(get.status){
+        status = 'checked';
+      }
+      else{
+        status = '';
+      }
+      return status;
+    },
+
+    hourList: function(){
+        var hour = [];
+        for (var i = 0; i < 24; i++) {
+            var pad = '00';
+            var h = (pad + i).slice(-pad.length);
+            hour.push({id:h,hour:h});
+        };
+        return hour ;
+    },
+    hourAttributes: function(){
+      var get = _.first(_.where(onAir.array(),{day: Template.parentData().id}));
+       var time = [];
+      if(get.time !=''){
+        time = get.time.split(':');
+      }
+      else{
+        time = [0]
+      }
+        return {
+            value: this.hour,
+            selected: time[0] == this.id?'selected': null
+        }
     }
 });
 

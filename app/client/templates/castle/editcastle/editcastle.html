@@ -203,13 +203,38 @@
                                            <span>วันและเวลาทำการ</span>
                                         </div>
                                         <div class="row" style="margin-top:10px;">
-                                            <div class="col-xs-12">
-                                                <div id="time-range">
-                                                    <p>Monday: <span class="opening-time">10:00 AM</span> - <span class="closing-time">20:00 PM</span></p>
-                                                    <div class="sliders_step1">
-                                                        <div id="slider-range"></div>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                  {{#each weekList}}
+                                                  <div class="row update-onair-choices" style="margin-top:10px;">
+                                                      <div class="col-md-4 col-sm-4 col-xs-4">
+                                                          <input type="hidden" class="hidden" name="update-selected-day" value="{{this.id}}">
+                                                          <input type="checkbox" name="update-week-day" {{isWeekCheck}}> {{this.day}}
+                                                      </div>
+                                                      <div class="col-md-8 col-sm-8 col-xs-8">
+                                                          <table width="100%">
+                                                              <tr>
+                                                                  <td width="45%" class="text-center">
+                                                                      <select class="form-control"  name="opening-time">
+                                                                      {{#each hourList}}
+                                                                      <option {{hourAttributes}}>{{hour}}</option>
+                                                                      {{/each}}
+                                                                      </select>
+                                                                  </td>
+                                                                  <td width="10%" class="text-center"> ถึง </td>
+                                                                  <td width="45%" class="text-center">
+                                                                      <select class="form-control"  name="closing-time">
+                                                                      {{#each hourList}}
+                                                                      <option {{hourAttributes}}>{{hour}}</option>
+                                                                      {{/each}}
+                                                                      </select>
+                                                                  </td>
+                                                              </tr>
+                                                          </table>
+                                                      </div>
+                                                  </div>
+                                                  {{/each}}
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
