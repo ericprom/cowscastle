@@ -752,7 +752,7 @@ Template.Editcastle.helpers({
             {id:'9',name:'ติดกล้อง CCTV'},
             {id:'10',name:'ห้องครัว'},
             {id:'11',name:'เข้าออกได้ 24 ชั่วโมง'},
-            {id:'12',name:'ล็อกเกอร์เก็บของ'}];
+            {id:'12',name:'ล็อกเกอร์ เก็บของ'}];
         return amenity;
     },
     isCheck:function(data){
