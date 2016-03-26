@@ -768,9 +768,7 @@ Template.Editcastle.helpers({
     hourList: function(){
         var hour = [];
         for (var i = 0; i < 24; i++) {
-            var pad = '00';
-            var h = (pad + i).slice(-pad.length);
-            hour.push({id:h,hour:h});
+            hour.push({id:i,hour:i+":00"});
         };
         return hour ;
     },
