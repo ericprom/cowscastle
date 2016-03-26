@@ -206,10 +206,10 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="form-group">
                                                   {{#each weekList}}
-                                                  <div class="row update-onair-choices" style="margin-top:10px;">
+                                                  <div class="row open-closing-time" style="margin-top:10px;">
                                                       <div class="col-md-4 col-sm-4 col-xs-4">
-                                                          <input type="hidden" class="hidden" name="update-selected-day" value="{{this.id}}">
-                                                          <input type="checkbox" name="update-week-day" {{isWeekCheck}}> {{this.day}}
+                                                          <input type="hidden" class="hidden" name="selected-open-day" value="{{this.id}}">
+                                                          <input type="checkbox" name="open-week-day" {{isWeekCheck}}> {{this.day}}
                                                       </div>
                                                       <div class="col-md-8 col-sm-8 col-xs-8">
                                                           <table width="100%">

@@ -121,6 +121,7 @@ Meteor.methods({
                     'detail.areas': detail.areas,
                     'detail.rooms': detail.rooms,
                     'detail.desks': detail.desks,
+                    'detail.opentime': detail.opentime,
                     'updatedBy':this.userId,
                     'updatedAt': new Date
                 }

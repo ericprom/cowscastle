@@ -77,7 +77,12 @@ Schemas.VenueDetail = new SimpleSchema({
       type: String,
       label: 'Venue Desks',
       optional: true
-    }
+    },
+    opentime:{
+      type: [Object],
+      optional:true,
+      blackbox:true
+    },
 });
 Schemas.VenueFacility = new SimpleSchema({
     facility_id: {

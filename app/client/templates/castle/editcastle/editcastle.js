@@ -115,6 +115,18 @@ Template.Editcastle.events({
         var floor_areas = $('input[name=floor-areas]').val();
         var number_of_rooms = $('input[name=number-of-rooms]').val();
         var number_of_desks = $('input[name=number-of-desks]').val();
+        var opentime = [];
+        $('.open-closing-time').map(function(){
+            var check = $(this).find('input[name=open-week-day]').is(':checked');
+            $open = $(this).find('select[name=opening-time]');
+            $close = $(this).find('select[name=closing-time]');
+            $day = $(this).find('input[name=selected-open-day]');
+            opentime.push({
+                status: check,
+                day: $day.val(),
+                time: $open.val()+'-'+$close.val()
+            });
+        });
         if(venue_id != ''){
             var detail = {
                 venue_id:venue_id,
@@ -125,6 +137,7 @@ Template.Editcastle.events({
                 areas: floor_areas || '',
                 rooms: number_of_rooms || '',
                 desks: number_of_desks || '',
+                opentime: opentime
             }
             Meteor.call('update/castle/detail',detail,function(err,resp){
                 if(resp){
