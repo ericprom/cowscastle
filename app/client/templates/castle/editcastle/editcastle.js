@@ -10,7 +10,7 @@ logoSource = new ReactiveVar('');
 posterSource = new ReactiveVar('');
 photoGallery = new ReactiveArray();
 venueFacility = new ReactiveArray();
-openningClosingTime = new ReactiveArray();
+openCloseHour = new ReactiveArray();
 var mapSession = 'venueAddress';
 /*****************************************************************************/
 /* Editcastle: Event Handlers */
@@ -44,10 +44,10 @@ Template.Editcastle.events({
                 for (var i = 0; i < venue.gallery.length; i++) {
                     photoGallery.push({path:venue.gallery[i].path});
                 };
-                openningClosingTime.clear();
+                openCloseHour.clear();
                   if(venue.detail.openhour){
                     for (var i = 0; i < venue.detail.openhour.length; i++) {
-                      openningClosingTime.push(venue.detail.openhour[i]);
+                      openCloseHour.push(venue.detail.openhour[i]);
                     };
                 }
                 break;
@@ -776,7 +776,7 @@ Template.Editcastle.helpers({
     },
     isWeekCheck:function(){
       var status = '';
-      var get = _.first(_.where(onAir.array(),{day: this.id}));
+      var get = _.first(_.where(openCloseHour.array(),{day: this.id}));
       if(get.status){
         status = 'checked';
       }
@@ -796,7 +796,7 @@ Template.Editcastle.helpers({
         return hour ;
     },
     openAttributes: function(){
-        var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
+        var get = _.first(_.where(openCloseHour.array(),{day: Template.parentData().id}));
         var time = get.open.split(':');
         return {
             value: this.hour,
@@ -804,7 +804,7 @@ Template.Editcastle.helpers({
         }
     },
     closeAttributes: function(){
-        var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
+        var get = _.first(_.where(openCloseHour.array(),{day: Template.parentData().id}));
         var time = get.close.split(':');
         return {
             value: this.hour,
