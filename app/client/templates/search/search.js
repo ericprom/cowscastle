@@ -5,6 +5,8 @@ searchPrice = new ReactiveVar({});
 searchProvince = new ReactiveVar({});
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
+searchNearby = new ReactiveVar({});
+searchFacility = new ReactiveVar({});
 
 listType = new ReactiveArray([
     {id:1,name:'โต๊ะทำงาน',active:false},
@@ -35,6 +37,34 @@ Template.Search.events({
     },
     'click .apply-advance-search': function(event, template){
         event.preventDefault();
+
+        $nearby_bts = $(this).find('input[name=nearby-bts]').is(':checked');
+        $nearby_mrt = $(this).find('input[name=nearby-mrt]').is(':checked');
+        $has_wifi = $(this).find('input[name=has-wifi]').is(':checked');
+        $has_printer = $(this).find('input[name=has-printer]').is(':checked');
+        $has_locker = $(this).find('input[name=has-locker]').is(':checked');
+        if($nearby_bts){
+            searchNearby.set({
+                "term" : { 
+                    "venue.detail.nearby" : "BTS"
+                }
+            });
+        }
+        if($nearby_mrt){
+            searchNearby.set({
+                "term" : { 
+                    "venue.detail.nearby" : "MRT"
+                }
+            });
+        }
+        if($has_wifi){
+            searchFacility.set({
+                "term" : { 
+                    "venue.facility" : "WiFi"
+                }
+            });
+        }
+
         elasticSearch();
         advanceSearch.set(false);
     },
@@ -269,6 +299,8 @@ function elasticSearch(){
     var search_space_type = searchType.get();
     var search_by_province = searchProvince.get();
     var search_price_range = searchPrice.get();
+    var search_nearby_place = searchNearby.get();
+    var search_by_facility = searchFacility.get();
     var search = {
         index: 'cowscastle',
         type: 'space',
@@ -284,7 +316,9 @@ function elasticSearch(){
                         "must" : [
                             search_space_type,
                             search_by_province,
-                            search_price_range
+                            search_price_range,
+                            search_nearby_place,
+                            search_by_facility
                         ]
                     }
                 }
