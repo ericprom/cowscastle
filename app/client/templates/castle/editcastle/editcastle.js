@@ -10,7 +10,7 @@ logoSource = new ReactiveVar('');
 posterSource = new ReactiveVar('');
 photoGallery = new ReactiveArray();
 venueFacility = new ReactiveArray();
-
+openningClosingTime = new ReactiveArray();
 var mapSession = 'venueAddress';
 /*****************************************************************************/
 /* Editcastle: Event Handlers */
@@ -44,6 +44,12 @@ Template.Editcastle.events({
                 for (var i = 0; i < venue.gallery.length; i++) {
                     photoGallery.push({path:venue.gallery[i].path});
                 };
+                openningClosingTime.clear();
+                  if(this.detail.opentime){
+                    for (var i = 0; i < this.detail.opentime.length; i++) {
+                      openningClosingTime.push(this.detail.opentime[i]);
+                    };
+                }
                 break;
 
             case "space":
@@ -787,19 +793,37 @@ Template.Editcastle.helpers({
         };
         return hour ;
     },
-    hourAttributes: function(){
-      var get = _.first(_.where(onAir.array(),{day: Template.parentData().id}));
-       var time = [];
-      if(get.time !=''){
-        time = get.time.split(':');
-      }
-      else{
-        time = [0]
-      }
-        return {
-            value: this.hour,
-            selected: time[0] == this.id?'selected': null
-        }
+    openAttributes: function(){
+        var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
+        console.log(get);
+        // var time = [];
+        // if(get.time !=''){
+        //     time = get.time.split('-');
+        // }
+        // else{
+        //     time = [0]
+        // }
+        // return {
+        //     value: this.hour,
+        //     selected: time[0] == this.id?'selected': null
+        // }
+        return;
+    },
+    closeAttributes: function(){
+        var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
+        //console.log(get);
+        // var time = [];
+        // if(get.time !=''){
+        //     time = get.time.split('-');
+        // }
+        // else{
+        //     time = [0]
+        // }
+        // return {
+        //     value: this.hour,
+        //     selected: time[0] == this.id?'selected': null
+        // }
+        return;
     }
 });
 
