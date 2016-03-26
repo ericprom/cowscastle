@@ -8,7 +8,12 @@ Template.Space.events({
     var space = Spaces.findOne(this.id);
     Blaze.renderWithData(Template.Bookingboxmodal,space,document.body);
     $("#Bookingboxmodal").modal("show");
-  }
+  },
+  'click .visit': function(event, template){
+        event.preventDefault();
+        var space = Spaces.findOne(this.id);
+        Router.go('venue',{_id:space.venue_id});
+    },
 });
 
 /*****************************************************************************/
