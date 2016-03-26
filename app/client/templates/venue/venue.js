@@ -56,7 +56,7 @@ Template.Venue.helpers({
         location.zipcode;
         return data;
     },
-    openhour: function(){
+    openning: function(){
         var venue = Venues.findOne(this.id);
         openCloseTime.clear();
         var day = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์']
@@ -64,7 +64,7 @@ Template.Venue.helpers({
         if(venue.detail.openhour){
             for (var i = 0; i < venue.detail.openhour.length; i++) {
                 if(venue.detail.openhour[i].status){
-                    openCloseTime.push({day:day[venue.detail.openhour[i].day],time:venue.detail.openhour[i].time);
+                    openCloseTime.push({day:day[venue.detail.openhour[i].day],time:venue.detail.openhour[i].time});
                 }
 
             };
