@@ -1,4 +1,5 @@
 venueFacility = new ReactiveArray();
+openCloseTime = new ReactiveArray();
 /*****************************************************************************/
 /* Venue: Event Handlers */
 /*****************************************************************************/
@@ -55,8 +56,16 @@ Template.Venue.helpers({
         location.zipcode;
         return data;
     },
-    isOpen: function(){
-        return "Open Today";
+    openhour: function(){
+        var venue = Venues.findOne(this.id);
+        openCloseTime.clear();
+        if(venue.detail.openhour){
+            for (var i = 0; i < venue.detail.openhour.length; i++) {
+                if(venue.detail.openhour[i].statu)
+                    openCloseTime.push(venue.detail.openhour[i]);
+            };
+        }
+        return openCloseTime.array();
     },
     getCover: function(){
         var venue = Venues.findOne(this.id);
