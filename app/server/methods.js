@@ -122,6 +122,7 @@ Meteor.methods({
                     'detail.rooms': detail.rooms,
                     'detail.desks': detail.desks,
                     'detail.openhour': detail.openhour,
+                    'detail.nearby': detail.nearby,
                     'updatedBy':this.userId,
                     'updatedAt': new Date
                 }
