@@ -244,8 +244,7 @@
                                         <div class="row" style="margin-top:10px;">
                                             {{#each nearbyList}}
                                             <div class="col-md-3 col-sm-3 col-xs-12 set-nearby-place">
-                                                <input type="hidden" class="hidden" name="selected-nearby-place" value="{{this.id}}">
-                                                <input type="checkbox" name="nearby-place" {{isNearbyCheck}}> {{this.place}}
+                                                <input type="checkbox" id="{{this.id}}" name="nearby" nearby-name="{{place}}" {{isNearbyCheck}}> <label for="{{this.id}}">{{this.place}}</label>
                                             </div>
                                             {{/each}}
                                         </div>
@@ -459,7 +458,7 @@
                                   <div class="well">
                                         {{#each facilityList}}
                                             <div class="checkbox-group">
-                                                <input type="checkbox" id="{{this.id}}" name="facility" {{isCheck}}> <label for="{{this.id}}">{{name}}</label>
+                                                <input type="checkbox" id="{{this.id}}" name="facility" facility-name="{{name}}" {{isCheck}}> <label for="{{this.id}}">{{name}}</label>
                                             </div>
                                         {{/each}}
                                   </div>

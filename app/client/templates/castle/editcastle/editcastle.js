@@ -144,11 +144,11 @@ Template.Editcastle.events({
         });
         var nearby = [];
         $('.set-nearby-place').map(function(){
-            var check = $(this).find('input[name=nearby-place]').is(':checked');
-            $place = $(this).find('input[name=selected-nearby-place]');
+            $checkbox = $(this).find('input[name=nearby]');
             nearby.push({
-                status: check,
-                place: $place.val(),
+                place: $checkbox.attr("id"),
+                name: $checkbox.attr("nearby-name"),
+                status: $checkbox.is(':checked')
             });
         });
         if(venue_id != ''){
@@ -478,6 +478,7 @@ Template.Editcastle.events({
             $checkbox = $(this).find('input[name=facility]');
             facility.push({
               facility_id: $checkbox.attr("id"),
+              facility_name: $checkbox.attr("facility-name"),
               status: $checkbox.is(':checked')
             });
         });
