@@ -45,9 +45,9 @@ Template.Editcastle.events({
                     photoGallery.push({path:venue.gallery[i].path});
                 };
                 openningClosingTime.clear();
-                  if(this.detail.opentime){
-                    for (var i = 0; i < this.detail.opentime.length; i++) {
-                      openningClosingTime.push(this.detail.opentime[i]);
+                  if(venue.detail.opentime){
+                    for (var i = 0; i < venue.detail.opentime.length; i++) {
+                      openningClosingTime.push(venue.detail.opentime[i]);
                     };
                 }
                 break;
@@ -795,35 +795,21 @@ Template.Editcastle.helpers({
     },
     openAttributes: function(){
         var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
-        console.log(get);
-        // var time = [];
-        // if(get.time !=''){
-        //     time = get.time.split('-');
-        // }
-        // else{
-        //     time = [0]
-        // }
-        // return {
-        //     value: this.hour,
-        //     selected: time[0] == this.id?'selected': null
-        // }
-        return;
+        var time = get.time.split('-');
+        var open = time[0].split(':');
+        return {
+            value: this.hour,
+            selected: open[0] == this.id?'selected': null
+        }
     },
     closeAttributes: function(){
         var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
-        //console.log(get);
-        // var time = [];
-        // if(get.time !=''){
-        //     time = get.time.split('-');
-        // }
-        // else{
-        //     time = [0]
-        // }
-        // return {
-        //     value: this.hour,
-        //     selected: time[0] == this.id?'selected': null
-        // }
-        return;
+        var time = get.time.split('-');
+        var close = time[1].split(':');
+        return {
+            value: this.hour,
+            selected: close[0] == this.id?'selected': null
+        }
     }
 });
 
