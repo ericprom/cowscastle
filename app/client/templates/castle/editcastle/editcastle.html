@@ -242,16 +242,13 @@
                                            <span>สถานที่ใกล้เคียง</span>
                                         </div>
                                         <div class="row" style="margin-top:10px;">
-                                            <div class="col-md-3 col-sm-3 col-xs-12">
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" value="bts" name="near-by-bts">ใกล้ BTS</label>
-                                                </div>
+                                            {{#each nearbyList}}
+                                            <div class="col-md-3 col-sm-3 col-xs-12 set-nearby-place">
+                                                <input type="hidden" class="hidden" name="selected-nearby-id" value="{{this.id}}">
+                                                <input type="hidden" class="hidden" name="selected-nearby-place" value="{{this.place}}">
+                                                <input type="checkbox" name="nearby-place" {{isNearbyCheck}}> {{this.place}}
                                             </div>
-                                            <div class="col-md-3 col-sm-3 col-xs-12">
-                                                <div class="checkbox">
-                                                    <label><input type="checkbox" value="mrt" name="near-by-mrt">ใกล้ MRT</label>
-                                                </div>
-                                            </div>
+                                            {{/each}}
                                         </div>
                                     </div>
                                     <a class="btn btn-primary btn-lg save-detail" href="#">

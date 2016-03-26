@@ -11,6 +11,7 @@ posterSource = new ReactiveVar('');
 photoGallery = new ReactiveArray();
 venueFacility = new ReactiveArray();
 openCloseHour = new ReactiveArray();
+nearbyPlace = new ReactiveArray();
 var mapSession = 'venueAddress';
 /*****************************************************************************/
 /* Editcastle: Event Handlers */
@@ -45,9 +46,15 @@ Template.Editcastle.events({
                     photoGallery.push({path:venue.gallery[i].path});
                 };
                 openCloseHour.clear();
-                  if(venue.detail.openhour){
+                if(venue.detail.openhour){
                     for (var i = 0; i < venue.detail.openhour.length; i++) {
                       openCloseHour.push(venue.detail.openhour[i]);
+                    };
+                }
+                nearbyPlace.clear();
+                if(venue.detail.nearby){
+                    for (var i = 0; i < venue.detail.nearby.length; i++) {
+                      nearbyPlace.push(venue.detail.nearby[i]);
                     };
                 }
                 break;
@@ -135,6 +142,17 @@ Template.Editcastle.events({
                 time: $open.val()+'-'+$close.val()
             });
         });
+        var nearby = [];
+        $('.set-nearby-place').map(function(){
+            var check = $(this).find('input[name=nearby-place]').is(':checked');
+            $nearby_id = $(this).find('input[name=selected-nearby-id]');
+            $place = $(this).find('input[name=selected-nearby-place]');
+            nearby.push({
+                status: check,
+                nearby_id: $nearby_id.val(),
+                place: $place.val(),
+            });
+        });
         if(venue_id != ''){
             var detail = {
                 venue_id:venue_id,
@@ -145,7 +163,8 @@ Template.Editcastle.events({
                 areas: floor_areas || '',
                 rooms: number_of_rooms || '',
                 desks: number_of_desks || '',
-                openhour: openhour
+                openhour: openhour,
+                nearby:nearby
             }
             Meteor.call('update/castle/detail',detail,function(err,resp){
                 if(resp){
@@ -762,6 +781,23 @@ Template.Editcastle.helpers({
             status = '';
         }
         return status;
+    },
+    nearbyList: function(){
+        return [
+            {id:'1',place:'ใกล้ BTS'},
+            {id:'2',place:'ใกล้ MRT'}
+        ];
+    },
+    isNearbyCheck:function(){
+      var status = '';
+      var get = _.first(_.where(nearbyPlace.array(),{nearby_id: this.id}));
+      if(get.status){
+        status = 'checked';
+      }
+      else{
+        status = '';
+      }
+      return status;
     },
     weekList: function(){
         return [

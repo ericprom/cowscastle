@@ -83,6 +83,11 @@ Schemas.VenueDetail = new SimpleSchema({
       optional:true,
       blackbox:true
     },
+    nearby:{
+      type: [Object],
+      optional:true,
+      blackbox:true
+    },
 });
 Schemas.VenueFacility = new SimpleSchema({
     facility_id: {
