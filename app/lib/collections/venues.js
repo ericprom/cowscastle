@@ -89,18 +89,6 @@ Schemas.VenueDetail = new SimpleSchema({
       blackbox:true
     },
 });
-Schemas.VenueFacility = new SimpleSchema({
-    facility_id: {
-      type: String,
-      label: 'Facility ID',
-      optional: true
-    },
-    status: {
-      type: Boolean,
-      label: 'Facility status',
-      optional: true
-    }
-});
 Schemas.Venue = new SimpleSchema({
     name: {
       type: String,
@@ -127,10 +115,10 @@ Schemas.Venue = new SimpleSchema({
       label: 'Venue Detail',
       optional: true
     },
-    facility: {
-      type: [Schemas.VenueFacility],
-      label: 'Venue Detail',
-      optional: true
+    facility:{
+      type: [Object],
+      optional:true,
+      blackbox:true
     },
     createdBy:{
       type: String,
