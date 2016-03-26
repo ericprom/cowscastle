@@ -59,8 +59,7 @@ Template.Venue.helpers({
     openning: function(){
         var venue = Venues.findOne(this.id);
         openCloseTime.clear();
-        var day = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์']
-        ];
+        var day = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัส','ศุกร์','เสาร์'];
         if(venue.detail.openhour){
             for (var i = 0; i < venue.detail.openhour.length; i++) {
                 if(venue.detail.openhour[i].status){
