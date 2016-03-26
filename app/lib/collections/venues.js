@@ -78,7 +78,7 @@ Schemas.VenueDetail = new SimpleSchema({
       label: 'Venue Desks',
       optional: true
     },
-    opentime:{
+    openhour:{
       type: [Object],
       optional:true,
       blackbox:true

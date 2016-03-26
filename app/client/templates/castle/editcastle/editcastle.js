@@ -45,9 +45,9 @@ Template.Editcastle.events({
                     photoGallery.push({path:venue.gallery[i].path});
                 };
                 openningClosingTime.clear();
-                  if(venue.detail.opentime){
-                    for (var i = 0; i < venue.detail.opentime.length; i++) {
-                      openningClosingTime.push(venue.detail.opentime[i]);
+                  if(venue.detail.openhour){
+                    for (var i = 0; i < venue.detail.openhour.length; i++) {
+                      openningClosingTime.push(venue.detail.openhour[i]);
                     };
                 }
                 break;
@@ -121,15 +121,17 @@ Template.Editcastle.events({
         var floor_areas = $('input[name=floor-areas]').val();
         var number_of_rooms = $('input[name=number-of-rooms]').val();
         var number_of_desks = $('input[name=number-of-desks]').val();
-        var opentime = [];
+        var openhour = [];
         $('.open-closing-time').map(function(){
             var check = $(this).find('input[name=open-week-day]').is(':checked');
             $open = $(this).find('select[name=opening-time]');
             $close = $(this).find('select[name=closing-time]');
             $day = $(this).find('input[name=selected-open-day]');
-            opentime.push({
+            openhour.push({
                 status: check,
                 day: $day.val(),
+                open: $open.val(),
+                close: $close.val(),
                 time: $open.val()+'-'+$close.val()
             });
         });
@@ -143,7 +145,7 @@ Template.Editcastle.events({
                 areas: floor_areas || '',
                 rooms: number_of_rooms || '',
                 desks: number_of_desks || '',
-                opentime: opentime
+                openhour: openhour
             }
             Meteor.call('update/castle/detail',detail,function(err,resp){
                 if(resp){
@@ -795,20 +797,18 @@ Template.Editcastle.helpers({
     },
     openAttributes: function(){
         var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
-        var time = get.time.split('-');
-        var open = time[0].split(':');
+        var time = get.open.split(':');
         return {
             value: this.hour,
-            selected: open[0] == this.id?'selected': null
+            selected: time[0] == this.id?'selected': null
         }
     },
     closeAttributes: function(){
         var get = _.first(_.where(openningClosingTime.array(),{day: Template.parentData().id}));
-        var time = get.time.split('-');
-        var close = time[1].split(':');
+        var time = get.close.split(':');
         return {
             value: this.hour,
-            selected: close[0] == this.id?'selected': null
+            selected: time[0] == this.id?'selected': null
         }
     }
 });
