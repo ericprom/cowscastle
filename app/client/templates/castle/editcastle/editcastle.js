@@ -788,7 +788,7 @@ Template.Editcastle.helpers({
     },
     isNearbyCheck:function(){
       var status = '';
-      var get = _.first(_.where(nearbyPlace.array(),{nearby_id: this.id}));
+      var get = _.first(_.where(nearbyPlace.array(),{place: this.id}));
       if(get.status){
         status = 'checked';
       }
