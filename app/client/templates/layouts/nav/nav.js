@@ -39,7 +39,8 @@ Template.Nav.events({
             type: 'space',
             query: {
                 match: {
-                    _all: keyword
+                    _all: keyword,
+                    "analyzer": "thai"
                 }
             }
         }
