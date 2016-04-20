@@ -179,7 +179,6 @@ Template.Search.helpers({
         if(typeof this.poster != 'undefined'){
             poster = "/cfs/files/Posters/"+this.poster;
         }
-        console.log(poster);
         return poster;
     },
 
@@ -327,8 +326,8 @@ function elasticSearch(){
         }
     }
     Meteor.call('elastic/search',search,function(err,resp){
-        console.log(err,resp);
         var ids = _.map(resp,function(item){return item._id});
+        console.log(ids);
         spaceIDs.set(ids);
     });
 }
