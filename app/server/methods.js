@@ -22,25 +22,25 @@ Meteor.methods({
                         "query": search.query,
                     }
                 }, function (err, res) {
-                    var results = [];
-                    try {
-                        if (typeof res.hits != 'undefined') {
-                            _.each(res.hits.hits, function(item) {
-                                var doc = {
-                                    // total: res.hits.total,
-                                    _id: item._id,
-                                    // space: item._source.space,
-                                    // venue: item._source.venue,
-                                };
-                                if (typeof item._id != 'undefined') {
-                                    results.push(doc);
-                                }
-                            });
-                        }
-                    }catch(err) {
-                        console.log(err);
-                    }
-                    callback(null, results);
+                    //var results = [];
+                    // try {
+                    //     if (typeof res.hits != 'undefined') {
+                    //         _.each(res.hits.hits, function(item) {
+                    //             var doc = {
+                    //                 // total: res.hits.total,
+                    //                 _id: item._id,
+                    //                 // space: item._source.space,
+                    //                 // venue: item._source.venue,
+                    //             };
+                    //             if (typeof item._id != 'undefined') {
+                    //                 results.push(doc);
+                    //             }
+                    //         });
+                    //     }
+                    // }catch(err) {
+                    //     console.log(err);
+                    // }
+                    callback(err, res);
                 });
             };
             var syncData = Meteor.wrapAsync(asyncdata);
