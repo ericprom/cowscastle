@@ -48,7 +48,7 @@ Template.Nav.events({
         Meteor.call('elastic/search',search,function(err,resp){
             var ids = _.map(resp,function(item){return item._id});
             spaceIDs.set(ids);
-            console.log(ids);
+            console.log('log nav:'+ids);
             Router.go('search', {keyword:keyword});
         });
     }
