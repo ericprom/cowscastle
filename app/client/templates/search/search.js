@@ -81,7 +81,7 @@ Template.Search.events({
             case 1:
                 searchType.set({
                     "term" : { 
-                        "space.type" : "share"
+                        "space.type" : "Share"
                     }
                 });
                 break;
@@ -89,7 +89,7 @@ Template.Search.events({
             case 2:
                 searchType.set({
                     "term" : { 
-                        "space.type" : "meeting"
+                        "space.type" : "Meeting"
                     }
                 });
                 break;
@@ -97,7 +97,7 @@ Template.Search.events({
             case 3:
                 searchType.set({
                     "term" : { 
-                        "space.type" : "studio"
+                        "space.type" : "Studio"
                     }
                 });
                 break;
