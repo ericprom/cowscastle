@@ -307,8 +307,10 @@ function elasticSearch(){
             "filtered": {
                 "query":  { 
                     "match": { 
-                        "_all": keyword,
-                        "analyzer": "thai"
+                        _all:{
+                          "query": keyword,
+                          "analyzer": "thai"
+                        },
                     }
                 },
                 "filter": { 

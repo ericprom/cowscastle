@@ -11,7 +11,10 @@ Template.Home.events({
             type: 'space',
             query: {
                 match: {
-                    _all: keyword
+                    _all:{
+                      "query": keyword,
+                      "analyzer": "thai"
+                    },
                 }
             }
         }
