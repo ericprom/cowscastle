@@ -114,10 +114,12 @@ Spaces.after.insert(function (userId, doc) {
 });
 Spaces.after.update(function (userId, doc, fieldNames, modifier, options) {
     var venue = Venues.findOne(doc.venue_id);
-    HTTP.call( 'PUT', 'http://localhost:9200/cowscastle/space/'+doc._id, {
+    HTTP.call( 'POST', 'http://localhost:9200/cowscastle/space/'+doc._id+'/_update', {
       data: {
-        "space": doc,
-        "venue" : venue
+        "doc" : {
+            "space": doc,
+            "venue" : venue
+        }
       }
     }, function( error, response ) {
       if ( error ) {
@@ -126,19 +128,4 @@ Spaces.after.update(function (userId, doc, fieldNames, modifier, options) {
         console.log( response );
       }
     });
-    // var venue = Venues.findOne(doc.venue_id);
-    // HTTP.call( 'POST', 'http://localhost:9200/cowscastle/space/'+doc._id+'/_update', {
-    //   data: {
-    //     "doc" : {
-    //         "space": doc,
-    //         "venue" : venue
-    //     }
-    //   }
-    // }, function( error, response ) {
-    //   if ( error ) {
-    //     console.log( error );
-    //   } else {
-    //     console.log( response );
-    //   }
-    // });
 }, {fetchPrevious:false});

@@ -1,12 +1,12 @@
 searchResults = new ReactiveVar();
 advanceSearch = new ReactiveVar(false);
-searchType = new ReactiveVar({});
-searchPrice = new ReactiveVar({});
-searchProvince = new ReactiveVar({});
+searchType = new ReactiveVar(null);
+searchPrice = new ReactiveVar(null);
+searchProvince = new ReactiveVar(null);
 searchPriceFrom = new ReactiveVar();
 searchPriceTo = new ReactiveVar();
-searchNearby = new ReactiveVar({});
-searchFacility = new ReactiveVar({});
+searchNearby = new ReactiveVar(null);
+searchFacility = new ReactiveVar(null);
 
 listType = new ReactiveArray([
     {id:1,name:'โต๊ะทำงาน',active:false},
@@ -75,7 +75,7 @@ Template.Search.events({
     'click .space-type': function(event, template){
         event.preventDefault();
         var typeId = $(event.currentTarget).attr("id");
-        searchType.set({})
+        searchType.set(null)
         switch(typeId){
             case "1":
             case 1:
@@ -108,7 +108,7 @@ Template.Search.events({
         event.preventDefault();
         var priceId = $(event.currentTarget).attr("id");
         searchPriceBy.set(priceId);
-        searchPrice.set({})
+        searchPrice.set(null)
         switch(priceId){
             case "1":
             case 1:
@@ -293,14 +293,24 @@ Tracker.autorun(function(){
 });
 function elasticSearch(){
     var keyword = '';
+    var filtered = [];
     if(Router.current().data() && Router.current().data().keyword !='')
         keyword = Router.current().data().keyword;
-    var search_space_type = searchType.get();
-    var search_by_province = searchProvince.get();
-    var search_price_range = searchPrice.get();
-    var search_nearby_place = searchNearby.get();
-    var search_by_facility = searchFacility.get();
-    var filtered = search_space_type,search_by_province,search_price_range,search_nearby_place,search_by_facility;
+    if(searchType.get()!=null){
+        filtered.push(searchType.get());
+    }
+    if(searchProvince.get()!=null){
+        filtered.push(searchProvince.get());
+    }
+    if(searchPrice.get()!=null){
+        filtered.push(searchPrice.get());
+    }
+    if(searchNearby.get()!=null){
+        filtered.push(searchNearby.get());
+    }
+    if(searchFacility.get()!=null){
+        filtered.push(searchFacility.get());
+    }
     var search = {
         index: 'cowscastle',
         type: 'space',
@@ -316,9 +326,7 @@ function elasticSearch(){
                 },
                 "filter": { 
                     "bool" : {
-                        "must" : [
-                            filtered
-                        ]
+                        "must" : filtered
                     }
                 }
             }
