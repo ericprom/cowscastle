@@ -7,11 +7,7 @@ Meteor.methods({
         if (Meteor.isServer){
             if (typeof search == 'undefined') {
                 search.query = {
-                    "filtered": {
-                        "query": {
-                            "match_all": {}
-                        }
-                    }
+                    "match_all": {}
                 };
             }
             var asyncdata = function(callback) {

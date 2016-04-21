@@ -300,6 +300,7 @@ function elasticSearch(){
     var search_price_range = searchPrice.get();
     var search_nearby_place = searchNearby.get();
     var search_by_facility = searchFacility.get();
+    var filtered = search_space_type,search_by_province,search_price_range,search_nearby_place,search_by_facility;
     var search = {
         index: 'cowscastle',
         type: 'space',
@@ -316,11 +317,7 @@ function elasticSearch(){
                 "filter": { 
                     "bool" : {
                         "must" : [
-                            search_space_type,
-                            search_by_province,
-                            search_price_range,
-                            search_nearby_place,
-                            search_by_facility
+                            filtered
                         ]
                     }
                 }
