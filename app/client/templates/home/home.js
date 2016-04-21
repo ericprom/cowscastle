@@ -21,10 +21,10 @@ Template.Home.events({
         console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             console.log('log home:',err,resp);
-            // var ids = _.map(resp,function(item){return item._id});
-            // spaceIDs.set(ids);
-            // console.log(ids);
-            // Router.go('search', {keyword:keyword});
+            var ids = _.map(resp,function(item){return item._id});
+            spaceIDs.set(ids);
+            console.log(ids);
+            Router.go('search', {keyword:keyword});
         });
 
     },

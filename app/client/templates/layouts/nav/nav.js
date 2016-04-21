@@ -49,9 +49,9 @@ Template.Nav.events({
         console.log(search);
         Meteor.call('elastic/search',search,function(err,resp){
             console.log('log nav:',err,resp);
-            // var ids = _.map(resp,function(item){return item._id});
-            // spaceIDs.set(ids);
-            // Router.go('search', {keyword:keyword});
+            var ids = _.map(resp,function(item){return item._id});
+            spaceIDs.set(ids);
+            Router.go('search', {keyword:keyword});
         });
     }
 });
