@@ -1,3 +1,3 @@
 #!/bin/bash
 cd ../app
-meteor build --debug --directory ../build
+meteor build --production --setting=settings.json --directory ../build
