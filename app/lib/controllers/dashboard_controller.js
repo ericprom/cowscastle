@@ -6,16 +6,16 @@ DashboardController = RouteController.extend({
   // this.subscribe('item', this.params._id).wait();
 
   subscriptions: function() {
-    this.subscribe('To', {'collection':'Staffs'}).wait();
-    this.subscribe('To', {'collection':'Venues'}).wait();
-    this.subscribe('To', {'collection':'Spaces'}).wait();
-    this.subscribe('To',{
-        'collection':'Bookings',
-        'query':{
-            createdBy : Meteor.userId()
-        }
-    });
-    this.subscribe('To', {'collection':'Teams'}).wait();
+    this.subscribe('getStaffs',{'action':'Staffs'}).wait();
+    this.subscribe('getTeams',{'action':'Teams'}).wait();
+    this.subscribe('getVenues',{'action':'Venues'}).wait();
+    this.subscribe('getSpaces',{'action':'Spaces'}).wait();
+    this.subscribe('getBookings',{
+      'action':'Bookings',
+      'query':{
+        createdBy : Meteor.userId()
+      }
+    }).wait();
   },
 
   // Subscriptions or other things we want to "wait" on. This also

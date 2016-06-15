@@ -7,16 +7,23 @@ BookingController = RouteController.extend({
 
   subscriptions: function() {
     var params = this.params;
-    this.subscribe('To', {'collection':'Staffs'}).wait();
-    this.subscribe('To', {'collection':'Teams'}).wait();
-    this.subscribe('To', {'collection':'Venues'}).wait();
-    this.subscribe('To', {'collection':'Spaces'}).wait();
-    this.subscribe('To', {'collection':'Bookings'}).wait();
-    this.subscribe('To', {'collection':'Payments'}).wait();
-    this.subscribe('To', {'collection':'Logos'}).wait();
-    this.subscribe('To', {'collection':'Posters'}).wait();
-    this.subscribe('To', {'collection':'Galleries'}).wait();
-    this.subscribe('To', {'collection':'Users'}).wait();
+    // this.subscribe('getStaffs',{
+    //   'action':'Staffs',
+    //   'query':{
+    //     app_id : new Meteor.Collection.ObjectID(params.appID)
+    //   }
+    // }).wait();
+
+    this.subscribe('getStaffs',{'action':'Staffs'}).wait();
+    this.subscribe('getTeams',{'action':'Teams'}).wait();
+    this.subscribe('getVenues',{'action':'Venues'}).wait();
+    this.subscribe('getSpaces',{'action':'Spaces'}).wait();
+    this.subscribe('getBookings',{'action':'Bookings'}).wait();
+    this.subscribe('getPayments',{'action':'Payments'}).wait();
+    this.subscribe('getLogos',{'action':'Logos'}).wait();
+    this.subscribe('getPosters',{'action':'Posters'}).wait();
+    this.subscribe('getGalleries',{'action':'Galleries'}).wait();
+    this.subscribe('getUsers',{'action':'Users'}).wait();
   },
 
   // Subscriptions or other things we want to "wait" on. This also
