@@ -1,3 +1,3 @@
 #!/bin/bash
 cd ../app
-meteor build --release --directory ../build
+meteor build --debug --directory ../build
