@@ -13,7 +13,7 @@
       // server specific environment variables
       "env": {
 
-        
+
       }
     }
   ],
@@ -22,7 +22,7 @@
   "setupMongo": true,
 
   // Application name (no spaces).
-  "appName": "Cows Castle",
+  "appName": "cows-castle",
 
   // Location of app (local directory). This can reference '~' as the users home directory.
   // i.e., "app": "~/Meteor/my-app",
