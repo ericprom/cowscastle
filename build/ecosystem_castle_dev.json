@@ -16,7 +16,6 @@
       name      : "cows-castle-dev",
       script    : "main.js",
       cwd       : "/home/castle/build/bundle",
-      "exec_interpreter" : "/root/.nvm/v5.5.0/bin/node",
       env: {
         PORT:80,
         MONGO_URL: "mongodb://127.0.0.1:27017/spaces",
