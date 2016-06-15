@@ -1,0 +1,35 @@
+{
+  /**
+   * This is a sample configuration file for PM2
+   */
+
+  /**
+   * Here we declare the apps that must be managed by PM2
+   * All options are listed here:
+   * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#json-app-declaration
+   *
+   */
+  apps : [
+
+    // First application
+    {
+      name      : "cows-castle",
+      script    : "main.js",
+      cwd       : "/home/castle/build/bundle",
+      "exec_interpreter" : "/root/.nvm/v0.10.41/bin/node",
+      env: {
+        PORT:80,
+        MONGO_URL: "mongodb://127.0.0.1:27017/spaces",
+        MONGO_OPLOG_URL: "mongodb://127.0.0.1:27017/local",
+        ROOT_URL:"http://www.cowscastle.com",
+        NODE_ENV: "production",
+        KADIRA_APP_ID:"injF2cB2KFcM9jBwn",
+        KADIRA_APP_SECRET:"a7dcc41e-ff18-41ba-b82d-cef67bf8c6e2"
+      }
+    }
+
+
+
+  ],
+
+}
