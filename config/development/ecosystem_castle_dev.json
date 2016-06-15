@@ -1,0 +1,14 @@
+{
+  apps : [
+    {
+      name      : "castle-dev",
+      script    : "main.js",
+      cwd       : "/home/castle/build/bundle",
+      env: {
+        PORT:80,
+        ROOT_URL:"http://www.cowscastle.com",
+      }
+    }
+  ]
+}
+
