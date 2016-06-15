@@ -22,7 +22,7 @@
   "setupMongo": true,
 
   // Application name (no spaces).
-  "appName": "cows-castle",
+  "appName": "castle",
 
   // Location of app (local directory). This can reference '~' as the users home directory.
   // i.e., "app": "~/Meteor/my-app",
