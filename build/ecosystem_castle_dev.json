@@ -13,7 +13,7 @@
 
     // First application
     {
-      name      : "cows-castle",
+      name      : "cows-castle-dev",
       script    : "main.js",
       cwd       : "/home/castle/build/bundle",
       "exec_interpreter" : "/root/.nvm/v0.10.41/bin/node",
@@ -22,7 +22,7 @@
         MONGO_URL: "mongodb://127.0.0.1:27017/spaces",
         MONGO_OPLOG_URL: "mongodb://127.0.0.1:27017/local",
         ROOT_URL:"http://www.cowscastle.com",
-        NODE_ENV: "production",
+        NODE_ENV: "development",
         KADIRA_APP_ID:"injF2cB2KFcM9jBwn",
         KADIRA_APP_SECRET:"a7dcc41e-ff18-41ba-b82d-cef67bf8c6e2"
       }
