@@ -189,12 +189,12 @@ Template.Editcastle.events({
         FS.Utility.eachFile(event, function(file) {
             Logos.insert(file, function(err, fileObj) {
                 if(fileObj){
-                    Meteor.subscribe('To', {
-                      'collection':'Logos',
-                      'query': {
+                    this.subscribe('getLogos',{
+                      'action':'Logos',
+                      'query':{
                         _id: fileObj._id
                       }
-                    });
+                    }).wait();
                     Logos.remove({_id:logoSource.get()});
                     logoSource.set(fileObj._id);
                     var venue_id = Router.current().data().params._id;
@@ -230,12 +230,12 @@ Template.Editcastle.events({
             Galleries.insert(file, function(err, fileObj) {
                 event.target.value = '';
                 if(fileObj){
-                    Meteor.subscribe('To', {
-                      'collection':'Galleries',
-                      'query': {
+                    this.subscribe('getGalleries',{
+                      'action':'Galleries',
+                      'query':{
                         _id: fileObj._id
                       }
-                    });
+                    }).wait();
                     photoGallery.push({path:fileObj._id});
                     var venue_id = Router.current().data().params._id;
                     if(venue_id != ''){
@@ -270,12 +270,12 @@ Template.Editcastle.events({
         }
         Meteor.call('create/throne',space,function(err,resp){
             if(resp){
-                Meteor.subscribe('To', {
-                  'collection':'Spaces',
-                  'query': {
-                    _id: resp
-                  }
-                });
+                this.subscribe('getSpaces',{
+                      'action':'Spaces',
+                      'query':{
+                        _id: resp
+                      }
+                    }).wait();
                 var space = Spaces.findOne(resp);
                 spaceData.set(space);
                 updateSpace.set(true);
@@ -312,12 +312,12 @@ Template.Editcastle.events({
             Posters.insert(file, function(err, fileObj) {
                 event.target.value = '';
                 if(fileObj){
-                    Meteor.subscribe('To', {
-                      'collection':'Posters',
-                      'query': {
+                    this.subscribe('getPosters',{
+                      'action':'Posters',
+                      'query':{
                         _id: fileObj._id
                       }
-                    });
+                    }).wait();
                     Posters.remove({_id:posterSource.get()});
                     posterSource.set(fileObj._id);
                     var space_id = spaceData.get()._id;
@@ -355,12 +355,12 @@ Template.Editcastle.events({
             Posters.insert(file, function(err, fileObj) {
                 event.target.value = '';
                 if(fileObj){
-                    Meteor.subscribe('To', {
-                      'collection':'Posters',
-                      'query': {
+                    this.subscribe('getPosters',{
+                      'action':'Posters',
+                      'query':{
                         _id: fileObj._id
                       }
-                    });
+                    }).wait();
                     Posters.remove({_id:posterSource.get()});
                     posterSource.set(fileObj._id);
                     var space_id = spaceData.get()._id;
