@@ -1,9 +1,14 @@
 {
-    "public": {
-    },
-    "app_name": "Cows Castle Search",
-    "elasticsearch": {
-        "host": "cowscastle.com:9200",
+  	"public": {
+		"reCaptcha": {
+            "siteKey": "6LeFchMTAAAAAIzyAaCTNvb-2qo68gpWm7c6hNsJ"
+        },
+  	},
+   "elasticsearch": {
+        "host": "localhost:9200",
         "meteorLogger": true
+    },
+    "reCaptcha": {
+        "secretKey": "6LeFchMTAAAAABXOY-IBBQScpa2UsXswtQodAPAM"
     }
 }
